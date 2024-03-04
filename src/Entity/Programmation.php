@@ -20,9 +20,9 @@ class Programmation
     private ?\DateTimeInterface $programmation_date = null;
 
     #[ORM\ManyToOne(inversedBy: 'relation')]
-    private ?Event $event_programmation = null;
+    private ?Event $event = null;
 
-    #[ORM\OneToMany(targetEntity: Ticket::class, mappedBy: 'programmation_ticket')]
+    #[ORM\OneToMany(targetEntity: Ticket::class, mappedBy: 'programmation')]
     private Collection $relation;
 
     public function __construct()
@@ -47,14 +47,14 @@ class Programmation
         return $this;
     }
 
-    public function getEventProgrammation(): ?Event
+    public function getEvent(): ?Event
     {
-        return $this->event_programmation;
+        return $this->event;
     }
 
-    public function setEventProgrammation(?Event $event_programmation): static
+    public function setEvent(?Event $event): static
     {
-        $this->event_programmation = $event_programmation;
+        $this->event = $event;
 
         return $this;
     }
@@ -71,7 +71,7 @@ class Programmation
     {
         if (!$this->relation->contains($relation)) {
             $this->relation->add($relation);
-            $relation->setProgrammationTicket($this);
+            $relation->setProgrammation($this);
         }
 
         return $this;
@@ -81,8 +81,8 @@ class Programmation
     {
         if ($this->relation->removeElement($relation)) {
             // set the owning side to null (unless already changed)
-            if ($relation->getProgrammationTicket() === $this) {
-                $relation->setProgrammationTicket(null);
+            if ($relation->getProgrammation() === $this) {
+                $relation->setProgrammation(null);
             }
         }
 

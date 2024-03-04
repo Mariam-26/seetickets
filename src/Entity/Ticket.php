@@ -33,13 +33,13 @@ class Ticket
     private ?string $ticket_place = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $ticket_nuber_place = null;
+    private ?string $ticket_number_place = null;
 
     #[ORM\ManyToOne(inversedBy: 'relation')]
-    private ?Programmation $programmation_ticket = null;
+    private ?Programmation $programmation = null;
 
     #[ORM\ManyToOne(inversedBy: 'relation')]
-    private ?User $user_ticket = null;
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -118,38 +118,38 @@ class Ticket
         return $this;
     }
 
-    public function getTicketNuberPlace(): ?string
+    public function getTicketNumberPlace(): ?string
     {
-        return $this->ticket_nuber_place;
+        return $this->ticket_number_place;
     }
 
-    public function setTicketNuberPlace(string $ticket_nuber_place): static
+    public function setTicketNumberPlace(string $ticket_number_place): static
     {
-        $this->ticket_nuber_place = $ticket_nuber_place;
+        $this->ticket_number_place = $ticket_number_place;
 
         return $this;
     }
 
-    public function getProgrammationTicket(): ?Programmation
+    public function getProgrammation(): ?Programmation
     {
-        return $this->programmation_ticket;
+        return $this->programmation;
     }
 
-    public function setProgrammationTicket(?Programmation $programmation_ticket): static
+    public function setProgrammation(?Programmation $programmation): static
     {
-        $this->programmation_ticket = $programmation_ticket;
+        $this->programmation = $programmation;
 
         return $this;
     }
 
-    public function getUserTicket(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_ticket;
+        return $this->user;
     }
 
-    public function setUserTicket(?User $user_ticket): static
+    public function setUser(?User $user): static
     {
-        $this->user_ticket = $user_ticket;
+        $this->user = $user;
 
         return $this;
     }
