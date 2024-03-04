@@ -44,9 +44,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $is_actived = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $role = [];
-
     #[ORM\OneToMany(targetEntity: Ticket::class, mappedBy: 'user')]
     private Collection $relation;
 
@@ -166,17 +163,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRole(): array
-    {
-        return $this->role;
-    }
-
-    public function setRole(array $role): static
-    {
-        $this->role = $role;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Ticket>
