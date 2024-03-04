@@ -18,7 +18,7 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $category_name = null;
 
-    #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'category_event')]
+    #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'category')]
     private Collection $relation;
 
     public function __construct()
@@ -55,7 +55,7 @@ class Category
     {
         if (!$this->relation->contains($relation)) {
             $this->relation->add($relation);
-            $relation->setCategoryEvent($this);
+            $relation->setCategory($this);
         }
 
         return $this;
@@ -65,8 +65,8 @@ class Category
     {
         if ($this->relation->removeElement($relation)) {
             // set the owning side to null (unless already changed)
-            if ($relation->getCategoryEvent() === $this) {
-                $relation->setCategoryEvent(null);
+            if ($relation->getCategory() === $this) {
+                $relation->setCategory(null);
             }
         }
 

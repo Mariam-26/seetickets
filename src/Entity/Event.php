@@ -22,15 +22,15 @@ class Event
     private ?string $event_place = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $organisation_name = null;
+    private ?string $orgasisation_name = null;
 
     #[ORM\Column(length: 255)]
     private ?string $event_image = null;
 
     #[ORM\ManyToOne(inversedBy: 'relation')]
-    private ?Category $category_event = null;
+    private ?Category $category = null;
 
-    #[ORM\OneToMany(targetEntity: Programmation::class, mappedBy: 'event_programmation')]
+    #[ORM\OneToMany(targetEntity: Programmation::class, mappedBy: 'event')]
     private Collection $relation;
 
     public function __construct()
@@ -67,14 +67,14 @@ class Event
         return $this;
     }
 
-    public function getOrganisationName(): ?string
+    public function getOrgasisationName(): ?string
     {
-        return $this->organisation_name;
+        return $this->orgasisation_name;
     }
 
-    public function setOrganisationName(string $organisation_name): static
+    public function setOrgasisationName(string $orgasisation_name): static
     {
-        $this->organisation_name = $organisation_name;
+        $this->orgasisation_name = $orgasisation_name;
 
         return $this;
     }
@@ -91,14 +91,14 @@ class Event
         return $this;
     }
 
-    public function getCategoryEvent(): ?Category
+    public function getCategory(): ?Category
     {
-        return $this->category_event;
+        return $this->category;
     }
 
-    public function setCategoryEvent(?Category $category_event): static
+    public function setCategory(?Category $category): static
     {
-        $this->category_event = $category_event;
+        $this->category = $category;
 
         return $this;
     }
@@ -115,7 +115,7 @@ class Event
     {
         if (!$this->relation->contains($relation)) {
             $this->relation->add($relation);
-            $relation->setEventProgrammation($this);
+            $relation->setEvent($this);
         }
 
         return $this;
@@ -125,8 +125,8 @@ class Event
     {
         if ($this->relation->removeElement($relation)) {
             // set the owning side to null (unless already changed)
-            if ($relation->getEventProgrammation() === $this) {
-                $relation->setEventProgrammation(null);
+            if ($relation->getEvent() === $this) {
+                $relation->setEvent(null);
             }
         }
 
