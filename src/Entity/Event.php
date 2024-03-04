@@ -22,7 +22,7 @@ class Event
     private ?string $event_place = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $orgasisation_name = null;
+    private ?string $organisation_name = null;
 
     #[ORM\Column(length: 255)]
     private ?string $event_image = null;
@@ -67,14 +67,14 @@ class Event
         return $this;
     }
 
-    public function getOrgasisationName(): ?string
+    public function getOrganisationName(): ?string
     {
-        return $this->orgasisation_name;
+        return $this->organisation_name;
     }
 
-    public function setOrgasisationName(string $orgasisation_name): static
+    public function setOrganisationName(string $organisation_name): static
     {
-        $this->orgasisation_name = $orgasisation_name;
+        $this->organisation_name = $organisation_name;
 
         return $this;
     }
