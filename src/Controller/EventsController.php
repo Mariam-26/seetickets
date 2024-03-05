@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\EventRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EventsController extends AbstractController
 {
@@ -32,4 +35,17 @@ class EventsController extends AbstractController
         ]);
     }
 
+    // VOIRE UN EVENEMENT EN DETAIL
+    #[Route('/event_details/{id}', name: 'app_event_details', methods: ['GET'])]
+    public function detail($id, EventRepository $eventRepository): Response
+    {
+        $event = $eventRepository->findOneBy(['id' => $id]);
+        
+     return  $this->render('events/detail.html.twig', [
+        // 'form' => $form->createView(), 
+        'event' => $event,
+    ]);
+    }
+
 }
+    

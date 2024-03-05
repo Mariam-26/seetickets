@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Event{% endblock %}
+
+{% block body %}
+    <h1>Voir l'évenement en détail</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>Event_name</th>
+                <td>{{ event.eventName }}</td>
+            </tr>
+            <tr>
+                <th>Event_place</th>
+                <td>{{ event.eventPlace }}</td>
+            </tr>
+            <tr>
+                <th>Organisation_name</th>
+                <td>{{ event.organisationName }}</td>
+            </tr>
+            <tr>
+                <th>Event_image</th>
+                <td>{{ event.eventImage }}</td>
+            </tr>
+            <tr>
+                <th>Event_price</th>
+                <td>{{ event.eventPrice }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}
