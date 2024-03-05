@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -69,15 +70,6 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter nos conditions',
-                    ]),
-                ],
-            ])
-            ->add('is_actived', CheckboxType::class, [
-                'label' => 'Vous devez cocher la case active',
-                'mapped' => true,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez cocher la case active',
                     ]),
                 ],
             ]);
