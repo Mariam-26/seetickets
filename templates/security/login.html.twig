@@ -3,7 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
+{# <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -27,5 +27,41 @@
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
-</form>
+</form> #}
+
+
+
+<div
+		class="container mt-5 mb-5 login">
+		{# FORMULAIRE DE CONNEXION #}
+		<form
+			action="{{ path('app_login') }}" method="post" name="login">
+			{# <form method="post"> #}
+			{% if error %}
+				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
+			{% if app.user %}
+				<div class="mb-3">
+					Connectez vous en tant que
+					{{ app.user.userIdentifier }},
+					<a href="{{ path('app_logout') }}">
+						<span class="deconnecter">Se déconnecter</span>
+					</a>
+				</div>
+			{% endif %}
+			<h1 class="h3 mb-3 font-weight-normal bienVenue">Veuillez vous connecter</h1>
+			{# MAIL #}
+			<label for="inputEmail">E-mail</label>
+			<input
+			type="email" value="{{ 'email' }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+			{# MOT DE PASS #}
+			<label for="inputPassword">Mot de passe</label>
+			<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<button class="btn btn-lg btn-primary mt-5 rounded" type="submit">
+				Se connecter
+			</button>
+		</form>
+		{# FIN FORMULAIRE DE CONNEXION #}
+	</div>
 {% endblock %}
