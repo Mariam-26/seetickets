@@ -33,6 +33,9 @@ class Event
     #[ORM\OneToMany(targetEntity: Programmation::class, mappedBy: 'event')]
     private Collection $relation;
 
+    #[ORM\Column]
+    private ?float $event_price = null;
+
     public function __construct()
     {
         $this->relation = new ArrayCollection();
@@ -129,6 +132,18 @@ class Event
                 $relation->setEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEventPrice(): ?float
+    {
+        return $this->event_price;
+    }
+
+    public function setEventPrice(float $event_price): static
+    {
+        $this->event_price = $event_price;
 
         return $this;
     }
