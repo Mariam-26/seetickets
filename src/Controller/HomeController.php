@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
 use App\Repository\EventRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,14 +12,21 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
-    public function index(EventRepository $events, UserRepository $users): Response
+    public function index(EventRepository $events, CategoryRepository $category): Response
     {
-        $e=$events->findAll();
-        $u=$users->findAll();
+
+        $couleurs = ["#E5007D","info","danger","success","secondary","light","muted"];
+
+        $event=$events->findAll();
+        $Category=$category->findAll();
+        $top20Event = array_slice($event,0,5);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'events'=> $e,
-            'users'=>$u
+            'events'=> $top20Event,
+            "category"=>$Category,
+            "couleur" => $couleurs
+            
         ]);
     }
 }
+ 
