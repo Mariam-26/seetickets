@@ -1,3 +1,34 @@
 body {
     background-color: white;
 }
+:root {
+    --color:#E5007D
+}
+
+
+.carousel-item {
+   
+    width: 33.333333%; /* Display three items at once */
+    margin-right: 15px;
+}
+
+.banner {
+    position: relative;
+    text-align: center;
+   
+  }
+  .banner img {
+    width: 100%;
+    height: 50vh;
+  
+  }
+  .banner .banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color);
+    color: white;
+
+  }
+
