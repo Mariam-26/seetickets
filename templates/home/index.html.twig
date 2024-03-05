@@ -33,11 +33,11 @@
 
 
 
-<h1 class= "text-center"> Meilleur ventes </h1>
+<h1 class= "ms-2"> Meilleures ventes </h1>
 
  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            {% for i in 0..2 %}
+            {% for i in 0..20 %}
                 <li data-target="#carouselExampleIndicators" data-slide-to="{{ i }}" {% if i == 0 %}class="active"{% endif %}></li>
             {% endfor %}
         </ol>
@@ -81,18 +81,22 @@
 
       
 
-<h1 class= "text-center mt-5"> Découvrir par categories </h1>
+<h1 class= " ms-2 mt-5"> Découvrir par categories </h1>
 
             {% for categorie in category %}
 
-                          <div class="container mt-5">
-                                    <div class="banner">
+
+                          <div class="container mt-5 mb-5">
+                                    <div class="banner ">
                                         <img src="https://via.placeholder.com/800x400?text=Slide+4" alt="Bannière">
-                                        <div class="banner-content">
-                                        <h1>{{categorie.categoryName}}</h1>
+                                        <div class="banner-content   ">
+                                        <h1 >{{categorie.categoryName}}</h1>
                                         </div>
                                      </div>
                                     </div>
+                                        
+                                        
+
             {% endfor %}
 
 
