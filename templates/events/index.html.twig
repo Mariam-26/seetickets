@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EventsController!{% endblock %}
+{% block title %}Liste des évenements {% endblock %}
 
 {% block body %}
 <style>
@@ -8,13 +8,82 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{# HEADER #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Applications/MAMP/htdocs/seetickets/src/Controller/EventsController.php</code></li>
-        <li>Your template at <code>/Applications/MAMP/htdocs/seetickets/templates/events/index.html.twig</code></li>
-    </ul>
+<header>
+    <div class="headerContent">
+        <div class="headerTitle">
+            <h1>MC SOLAAR</h1>
+            <h2>En Tournée</h2>
+        </div>
+    </div>
+    <div class="headerButtons">
+        <button>+ d'infos</button>
+        <button>+ réserver</button>
+        <button>+ ma liste</button>
+    </div>
+    <div class="example-wrapper">
+    <h1>Liste des évenements</h1>
+     {{dump(events)}}    
 </div>
+
+</header>
+
+{# MAIN #}
+
+<main class="container mt-5">
+<h1 class= "ms-2"> Meilleures ventes </h1>
+
+ <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for i in 0..20 %}
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{ i }}" {% if i == 0 %}class="active"{% endif %}></li>
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% set active = true %}
+         <div class="row">
+
+            {% for event in events %}
+
+                <div class="carousel-item {% if active %}active{% endif %}">
+                          <div class="card mt-5">
+                            <div class="card-body">
+
+                                <img class="d-block w-100" src="https://via.placeholder.com/800x400?text=Slide+4" alt="Slide 4">
+
+                                <h5 class="card-title">{{ event.eventName }}</h5>
+                                
+                            </div>
+                        </div>
+                        </div>
+                {% set active = false %}
+            {% endfor %}
+                                        </div>
+
+        </div>
+
+{# d'autres affichage #}
+
+ <div class="flex space-x-4 mb-6">
+		
+
+
+
+        
+        <p>
+        
+        {% for event in events %}
+           
+        {% endfor %}
+       
+        </p>
+		<button class="bg-blue-500 text-white px-4 py-2 rounded" >
+			
+		</button>
+	</div>       
+</main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}
