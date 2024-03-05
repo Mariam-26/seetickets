@@ -10,18 +10,25 @@
 
 {# HEADER #}
 
-<header>
-    <div class="headerContent">
-        <div class="headerTitle">
-            <h1>MC SOLAAR</h1>
-            <h2>En Tournée</h2>
+<header class="banner text-white">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banner-content">
+                    <div class="headerTitle">
+                        <h1>MC SOLAAR</h1>
+                        <h2>En Tournée</h2>
+                    </div>
+                    <div class="headerButtons">
+                        <button>+ d'infos</button>
+                        <button>+ réserver</button>
+                        <button>+ ma liste</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="headerButtons">
-        <button>+ d'infos</button>
-        <button>+ réserver</button>
-        <button>+ ma liste</button>
-    </div>
+</div>
+
 </header>
 
 {# MAIN #}
@@ -30,49 +37,23 @@
 
 
 
+<h2 class= "ms-2"> Meilleures ventes </h2>
 
-
-
-<h1 class= "ms-2"> Meilleures ventes </h1>
-
- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            {% for i in 0..20 %}
-                <li data-target="#carouselExampleIndicators" data-slide-to="{{ i }}" {% if i == 0 %}class="active"{% endif %}></li>
-            {% endfor %}
-        </ol>
-        <div class="carousel-inner">
-            {% set active = true %}
-         <div class="row">
-
-            {% for event in events %}
-
-                <div class="carousel-item {% if active %}active{% endif %}">
-                          <div class="card mt-5">
-                            <div class="card-body">
-
-                                <img class="d-block w-100" src="https://via.placeholder.com/800x400?text=Slide+4" alt="Slide 4">
-
-                                <h5 class="card-title">{{ event.eventName }}</h5>
-                                
-                            </div>
-                        </div>
-                        </div>
-                {% set active = false %}
-            {% endfor %}
-                                        </div>
-
+<div class="container text-center">
+    <div class="row overflow-container">
+        {% for event in events %}
+        <div class="col-md-4">
+            <div class="card mb-1">
+                <div class="card-body">
+                     
+                    <img class="imgTop20" src="https://via.placeholder.com/80x40?text=Slide+4"/>
+                </div>
+            </div>
+                    <h5 class="card-title">{{ event.eventName }}</h5>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        {% endfor %}
     </div>
-
+</div>
  
 
 
@@ -81,23 +62,30 @@
 
       
 
-<h1 class= " ms-2 mt-5"> Découvrir par categories </h1>
+<h2 class= " ms-2 mt-5"> Découvrir par categories </h2>
 
-            {% for categorie in category %}
+            <div class="container mt-5 mb-5">
+
+                                    <div class="row ">
+                    {% for categorie in category %}
 
 
-                          <div class="container mt-5 mb-5">
-                                    <div class="banner ">
+
+                                    <div class="col-4 mb-2 h-50">
+                                      <div class="category ">
                                         <img src="https://via.placeholder.com/800x400?text=Slide+4" alt="Bannière">
-                                        <div class="banner-content   ">
+                                        <div class="category-content   ">
                                         <h1 >{{categorie.categoryName}}</h1>
                                         </div>
                                      </div>
-                                    </div>
-                                        
-                                        
+                                     </div>
+                                {% endfor %}
 
-            {% endfor %}
+                                     </div>
+                                    
+            </div>
+
+            <h1 class= "ms-2"> La billetterie de vos évènements favoris </h1>
 
 
 </main>

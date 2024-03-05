@@ -1,32 +1,39 @@
 body {
     background-color: white;
+    font-family: "Outfit Black";
 }
 
-
-.carousel-item {
-   
-    width: 33.333333%; /* Display three items at once */
-    margin-right: 15px;
+.banner{
+  background-color: black;
 }
 
-.banner {
+.overflow-container {
+  max-height: 70vh; /* Définissez la hauteur maximale souhaitée */
+  overflow-y: auto; /* Ajoutez la barre de défilement verticale si nécessaire */
+}
+
+.imgTop20{
+  display: block;
+  margin: auto;
+}
+
+.category {
     position: relative;
     text-align: center;
    
   }
-  .banner img {
+  .category img {
     width: 100%;
-    height: 50vh;
+    height: 20vh;
   
   }
-  .banner .banner-content {
+  .category .category-content {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     background-color: #E5007D;
-
 
   }
 
