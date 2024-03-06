@@ -24,6 +24,18 @@ class EventsController extends AbstractController
         ]);
     }
 
+    #[Route('/events', name: 'app_events')]
+    public function event(EventRepository $events): Response
+    {
+        $e=$events->findAll();
+        return $this->render('events/index.html.twig', [
+            'controller_name' => 'EventsController',
+            'events'=>$e
+
+        ]);
+    }
+
+
     #[Route('/search_result', name: 'app_search_Result',methods:"POST")]
     public function searchEvent(Request $request, EventRepository $events): Response
     {
