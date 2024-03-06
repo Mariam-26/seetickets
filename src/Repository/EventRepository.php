@@ -25,7 +25,7 @@ class EventRepository extends ServiceEntityRepository
     {
         dump($query);
         return $this->createQueryBuilder('e')
-            ->andWhere('e.event_name = :query')
+            ->andWhere('e.event_name LIKE :query')
             ->setParameter('query', '%'.$query.'%')
             ->getQuery()
             ->getResult();
