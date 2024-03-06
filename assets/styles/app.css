@@ -37,6 +37,7 @@ background-size: cover;
 .category {
     position: relative;
     text-align: center;
+    background-image: url('../images/07-categories/08-categorie-background.png'); ;
    
   }
   .category img {
