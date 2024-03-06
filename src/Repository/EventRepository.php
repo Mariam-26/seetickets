@@ -23,10 +23,10 @@ class EventRepository extends ServiceEntityRepository
 
     public function findEventByName($query) : array
     {
-        dump($query);
+        
         return $this->createQueryBuilder('e')
-            ->andWhere('e.event_name LIKE :query')
-            ->setParameter('query', '%'.$query.'%')
+            ->andWhere('e.event_name LIKE :val')
+            ->setParameter('val', '%'.$query.'%')
             ->getQuery()
             ->getResult();
     }
