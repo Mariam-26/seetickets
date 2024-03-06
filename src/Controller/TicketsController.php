@@ -18,4 +18,16 @@ class TicketsController extends AbstractController
             'tickets'=>$t
         ]);
     }
+
+     // VOIRE UN TICKET EN DETAIL /tickets/{id}
+     #[Route('/tickets/{id}', name: 'app_ticket_details', methods: ['GET'])]
+     public function detail($id, TicketRepository $ticketRepository): Response
+     {
+         $ticket = $$ticketRepository->findOneBy(['id' => $id]);
+         
+      return  $this->render('tickets/detail.html.twig', [
+           'ticket' => $ticket
+     ]);
+     }
+ 
 }
