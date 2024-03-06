@@ -12,6 +12,18 @@ background-size: cover;
 
 }
 
+
+.navbar-nav .nav-link {
+  color: white;
+}
+
+.banner-content{
+
+  margin-top: 45vh;
+}
+
+
+
 .overflow-container {
   max-height: 70vh; /* Définissez la hauteur maximale souhaitée */
   overflow-y: auto; /* Ajoutez la barre de défilement verticale si nécessaire */
@@ -25,6 +37,7 @@ background-size: cover;
 .category {
     position: relative;
     text-align: center;
+    background-image: url('../images/07-categories/08-categorie-background.png'); ;
    
   }
   .category img {
