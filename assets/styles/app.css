@@ -4,7 +4,12 @@ body {
 }
 
 .banner{
-  background-color: black;
+
+background-image: url('../images/01-header-mc-solaar.png');
+height: 70vh;
+background-size: cover;
+
+
 }
 
 .overflow-container {
