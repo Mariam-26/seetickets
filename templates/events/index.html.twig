@@ -10,78 +10,64 @@
 
 {# HEADER #}
 
-<header>
-    <div class="headerContent">
-        <div class="headerTitle">
-            <h1>MC SOLAAR</h1>
-            <h2>En Tournée</h2>
+<header class="banner text-white">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banner-content">
+                    <div class="headerTitle">
+                        <h1>MC SOLAAR</h1>
+                        <h2>En Tournée</h2>
+                    </div>
+                    <div class="headerButtons">
+                        <button>+ d'infos</button>
+                        <button>+ réserver</button>
+                        <button>+ ma liste</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="headerButtons">
-        <button>+ d'infos</button>
-        <button>+ réserver</button>
-        <button>+ ma liste</button>
-    </div>
-    <div class="example-wrapper">
-    <h1>Liste des évenements</h1>
-     {{dump(events)}}    
 </div>
 
-</header>
 
 {# MAIN #}
 
 <main class="container mt-5">
-<h1 class= "ms-2"> Meilleures ventes </h1>
 
- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            {% for i in 0..20 %}
-                <li data-target="#carouselExampleIndicators" data-slide-to="{{ i }}" {% if i == 0 %}class="active"{% endif %}></li>
-            {% endfor %}
-        </ol>
-        <div class="carousel-inner">
-            {% set active = true %}
-         <div class="row">
 
-            {% for event in events %}
+ 
 
-                <div class="carousel-item {% if active %}active{% endif %}">
-                          <div class="card mt-5">
-                            <div class="card-body">
 
-                                <img class="d-block w-100" src="https://via.placeholder.com/800x400?text=Slide+4" alt="Slide 4">
+    
+    {#  test #}    
+    <h2 class= " ms-2 mt-5"> Liste des évenements </h2>
 
-                                <h5 class="card-title">{{ event.eventName }}</h5>
-                                
-                            </div>
-                        </div>
-                        </div>
-                {% set active = false %}
-            {% endfor %}
+            <div class="container mt-5 mb-5">
+
+                                    <div class="row ">
+                    {% for event in events %}
+
+
+
+                                    <div class="col-4 mb-2 h-50">
+                                      <div class="category ">
+                                        <img src="https://via.placeholder.com/800x400?text=Slide+4" alt="Bannière">
+                                        <div class="category-content   ">
+                                        <h1 >{{event.eventName}}</h1>
                                         </div>
+                                     </div>
+                                     </div>
+                                {% endfor %}
 
-        </div>
+                                     </div>
+                                    
+            </div>
+{# test button vers page detail  #}        
 
-{# d'autres affichage #}
+<button>public function indexAction(){
+                return $this->render('home/index.html.twig');
+    }</button>
 
- <div class="flex space-x-4 mb-6">
-		
-
-
-
-        
-        <p>
-        
-        {% for event in events %}
-           
-        {% endfor %}
-       
-        </p>
-		<button class="bg-blue-500 text-white px-4 py-2 rounded" >
-			
-		</button>
-	</div>       
 </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
