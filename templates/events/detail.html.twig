@@ -1,38 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Event{% endblock %}
+{% block title %}Event
+{% endblock %}
 
 {% block body %}
-    <h1>Voir l'évenement en détail</h1>
+	<div class="container mt-5 card-group d-flex row d-flex m-auto">
+					<div class="col-lg-8 col-md-8 col-sm-12">
+						<h2>L'évenement en détail</h2>
+						<table class="table">
+							<tbody>
+								<tr>
+									<th>Nom</th>
+									<td>{{ event.eventName }}</td>
+								</tr>
+								<tr>
+									<th>Place</th>
+									<td>{{ event.eventPlace }}</td>
+								</tr>
+								<tr>
+									<th>Organisateur</th>
+									<td>{{ event.organisationName }}</td>
+								</tr>
+								<tr>
+									<th>Image</th>
+									<td>{{ event.eventImage }}</td>
+								</tr>
+								<tr>
+									<th>Price</th>
+									<td>{{ event.eventPrice}} €</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Event_name</th>
-                <td>{{ event.eventName }}</td>
-            </tr>
-            <tr>
-                <th>Event_place</th>
-                <td>{{ event.eventPlace }}</td>
-            </tr>
-            <tr>
-                <th>Organisation_name</th>
-                <td>{{ event.organisationName }}</td>
-            </tr>
-            <tr>
-                <th>Event_image</th>
-                <td>{{ event.eventImage }}</td>
-            </tr>
-            <tr>
-                <th>Event_price</th>
-                <td>{{ event.eventPrice }}</td>
-            </tr>
-        </tbody>
-    </table>
+					<div class="col-lg-4 col-md-4 col-sm-12">
+						<h2>Programmation</h2>
+						{% for programmation in programmations %}
+							<p>programmé le
+								{{ programmation.programmationDate  | date('d-m-Y H:i:s') }}</p>
+							{# {{dump(programmation)}} #}
+						{% endfor %}
+					</div>
+	</div>
 
 
 {% endblock %}
