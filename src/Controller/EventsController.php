@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class EventsController extends AbstractController
 {
-    #[Route('/events/{category}', name: 'app_events')]
+    #[Route('/events', name: 'app_events')]
     public function index(EventRepository $events): Response
     {
         $e = $events->findAll();
@@ -23,6 +23,8 @@ class EventsController extends AbstractController
 
         ]);
     }
+
+    
 
     #[Route('/search_result', name: 'app_search_Result',methods:"POST")]
     public function searchEvent(Request $request, EventRepository $events): Response
