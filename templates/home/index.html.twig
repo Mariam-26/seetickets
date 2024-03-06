@@ -39,7 +39,7 @@
   
 
 
-<h2 class= "ms-2 mt-5"> Meilleures ventes </h2>
+<h2 class= "ms-2 mt-5"> Meilleures ventes: </h2>
 
 <div class="container text-center">
     <div class="row overflow-container">
@@ -47,8 +47,11 @@
         <div class="col-md-4">
             <div class="card mb-1">
                 <div class="card-body">
+                    <a href ="/event_details/{{event.id}}"> 
                      
-                    <img class="imgTop20" src="{{asset('images/05-posters/' ~ event.eventImage)}}"/>
+                     <img class="imgTop20" src="{{asset('images/05-posters/' ~ event.eventImage)}}"/>
+
+                    </a>
                 </div>
             </div>
                     <h5 class="card-title">{{ event.eventName }}</h5>
@@ -64,7 +67,7 @@
 
       
 
-<h2 class= " ms-2 mt-5"> Découvrir par categories </h2>
+<h2 class= " ms-2 mt-5"> Découvrir par categories: </h2>
 
             <div class="container mt-5 mb-5">
 
