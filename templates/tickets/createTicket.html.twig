@@ -11,8 +11,45 @@
 <main>
 
     <h1>Achat d'un billet</h1>
-    {{dump(programmation.event.eventName)}}
-    {{dump(user)}}
+
+    <div>
+        <ul>
+            <li>Nom de l'évènement : {{programmation.event.eventName}}</li>
+            <li>Catégorie de l'évènement : {{programmation.event.category.categoryName}}</li>
+            <li>Organisateur de l'évènement : {{programmation.event.organisationName}}</li>
+            <li>Lieu de l'évènement : {{programmation.event.eventPlace}}</li>
+            <li>Date de l'évènement : {{programmation.programmationDate | date('d-m-Y')}}</li>
+            <li>Prix : {{programmation.event.eventPrice}}€</li>
+        </ul>
+    </div>
+
+    {{ form_start(form) }}
+{#         {{ form_label(form.price) }}
+        {{ form_widget(form.price) }}
+   
+        {{ form_label(form.ticket_date) }}
+        {{ form_widget(form.ticket_date) }} #}
+
+        {{ form_label(form.ticket_firstname) }}
+        {{ form_widget(form.ticket_firstname) }}
+
+        {{ form_label(form.ticket_lastname) }}
+        {{ form_widget(form.ticket_lastname) }}
+
+        {# {{ form_label(form.ticket_time) }}
+        {{ form_widget(form.ticket_time ) }} #}
+
+        {#{{ form_label(form.ticket_place) }}
+        {{ form_widget(form.ticket_place) }} #}
+
+        {{ form_label(form.ticket_number_place) }}
+        {{ form_widget(form.ticket_number_place) }}
+
+
+        {# {{ form_rest(form) }} #}
+        <button type="submit">Enregistrer</button>
+    {{ form_end(form) }}
+
 </main>
 
 {% endblock %}
