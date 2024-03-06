@@ -19,7 +19,7 @@ class HomeController extends AbstractController
         $event=$events->findAll();
         $Category=$category->findAll(['event' => $event]);
         dump($event);
-        $top20Event = array_slice($event,0,5);
+        $top20Event = array_slice($event,0,3);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'events'=> $top20Event,
