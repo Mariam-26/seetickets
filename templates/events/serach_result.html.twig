@@ -11,12 +11,13 @@
     <div class="searchBar">
 
 
-     <form action="{{ path('app_search_Result') }}" method="post">
+     <form action="{{ path('app_search') }}" method="post">
         <input type="text" name="query" placeholder="Rechercher...">
         <button type="submit">Rechercher</button>
-     </form>
+     </form>  
 
-       
+            <p>Bienvenue, {{ query }}!</p>
+       
 
 
     </div>

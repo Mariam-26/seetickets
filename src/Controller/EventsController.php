@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -21,6 +21,24 @@ class EventsController extends AbstractController
 
         ]);
     }
+
+    #[Route('/search_result', name: 'app_search_Result',methods:"POST")]
+    public function searchEvent(Request $request, EventRepository $events): Response
+    {
+        $query = $request->request->get('query');
+        // Traitez la requête de recherche comme vous le souhaitez, par exemple, recherchez dans la base de données
+        $results = $events->findEventByName($query);
+        dump($events);
+
+
+        return $this->render('events/search.html.twig', [
+            'query' => $query,
+            // Passez d'autres données de résultat de recherche à votre template si nécessaire
+            'results' => $results,
+
+        ]);
+    }
+
 
     #[Route('/search', name: 'app_search')]
     public function search(): Response
