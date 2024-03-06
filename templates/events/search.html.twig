@@ -8,10 +8,11 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-    <div class="searchBar">
+    <div class="searchBar text-center mt-5">
 
+        <h1 calss ="text-center"> Vous recherchez ? </h1>
 
-     <form action="{{ path('app_search_Result') }}" method="post">
+     <form class="mt-5" action="{{ path('app_search_Result') }}" method="post">
         <input type="text" name="query" placeholder="Rechercher...">
         <button type="submit">Rechercher</button>
      </form>
