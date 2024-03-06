@@ -54,6 +54,10 @@
                                         <img src="https://via.placeholder.com/800x400?text=Slide+4" alt="Bannière">
                                         <div class="category-content   ">
                                         <h1 >{{event.eventName}}</h1>
+                                        <button class="bg-blue-500 text-white px-4 py-2 rounded" >
+			                            <a href="{{path('app_home')}}">Plus détails</a>
+                                        {# events/detail.html.twig #}
+		                                </button>
                                         </div>
                                      </div>
                                      </div>
@@ -62,12 +66,7 @@
                                      </div>
                                     
             </div>
-{# test button vers page detail  #}        
 
-<button>public function indexAction(){
-                return $this->render('home/index.html.twig');
-                http://127.0.0.1:8000/event_details/2
-    }</button>
 
 </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
