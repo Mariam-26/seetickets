@@ -2,23 +2,45 @@
 
 namespace App\Controller;
 
+use App\Entity\Programmation;
 use App\Repository\EventRepository;
+use App\Repository\ProgrammationRepository;
+use App\Entity\Event;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EventsController extends AbstractController
 {
     #[Route('/events', name: 'app_events')]
     public function index(EventRepository $events): Response
     {
-        $e=$events->findAll();
+        $e = $events->findAll();
         return $this->render('events/index.html.twig', [
             'controller_name' => 'EventsController',
-            'events'=>$e
+            'events' => $e
 
         ]);
     }
+
+    #[Route('/search_result', name: 'app_search_Result',methods:"POST")]
+    public function searchEvent(Request $request, EventRepository $events): Response
+    {
+        $query = $request->request->get('query');
+        // Traitez la requête de recherche comme vous le souhaitez, par exemple, recherchez dans la base de données
+        $results = $events->findEventByName($query);
+        dump($events);
+
+
+        return $this->render('events/search.html.twig', [
+            'query' => $query,
+            // Passez d'autres données de résultat de recherche à votre template si nécessaire
+            'results' => $results,
+
+        ]);
+    }
+
 
     #[Route('/search', name: 'app_search')]
     public function search(): Response
@@ -38,15 +60,20 @@ class EventsController extends AbstractController
 
     // VOIRE UN EVENEMENT EN DETAIL
     #[Route('/event_details/{id}', name: 'app_event_details', methods: ['GET'])]
-    public function detail($id, EventRepository $eventRepository): Response
+    public function detail(ProgrammationRepository $programmationRepository, $id, EventRepository $eventRepository): Response
     {
         $event = $eventRepository->findOneBy(['id' => $id]);
-        
-     return  $this->render('events/detail.html.twig', [
-        // 'form' => $form->createView(), 
-        'event' => $event,
-    ]);
+        //dd($event);
+        $programmations = $programmationRepository->findBy(['event' => $event]);
+        // dd($programmations);
+
+        // Si l'évènement existe j'envoie les données à la vue
+        return  $this->render('events/detail.html.twig', [
+            // 'form' => $form->createView(), 
+            'event' => $event,
+            'programmations' => $programmations,
+        ]);
     }
 
-}
     
+}

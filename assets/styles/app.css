@@ -4,8 +4,25 @@ body {
 }
 
 .banner{
-  background-color: black;
+
+background-image: url('../images/01-header-mc-solaar.png');
+height: 70vh;
+background-size: cover;
+
+
 }
+
+
+.navbar-nav .nav-link {
+  color: white;
+}
+
+.banner-content{
+
+  margin-top: 45vh;
+}
+
+
 
 .overflow-container {
   max-height: 70vh; /* Définissez la hauteur maximale souhaitée */
@@ -20,6 +37,7 @@ body {
 .category {
     position: relative;
     text-align: center;
+    background-image: url('../images/07-categories/08-categorie-background.png'); ;
    
   }
   .category img {

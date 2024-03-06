@@ -16,7 +16,64 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+        
+        <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            
+           
+
+          
+
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand ms-5" href="#"><img src ="{{asset('images/logo/00-logo-white.png')}}" /></a>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">  </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><img src ="{{asset('images/02-icons/00-icon-home.png')}}" /> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Concert</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Spectacle</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Festival</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Humour</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sport</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Crée un compte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><img src ="{{asset('images/02-icons/01-icon-user.png')}}" /></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><img src ="{{asset('images/02-icons/02-icon-search.png')}}" /></a>
+                </li>
+            </ul>
+        </div>
+      </nav>
+
+        </header>
+
+        {% block body %}
+        {# HEADER #}
+
+
+
+        {% endblock %}
      
    
     </body>
