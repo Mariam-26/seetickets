@@ -72,10 +72,12 @@
 
 					<div class="col-4 mb-2 h-50">
 						<div class="category ">
-							<img src="{{asset('images/07-categories/08-categorie-background.png')}}" alt="Bannière">
-							<div class="category-content   ">
-								<h1>{{categorie.categoryName}}</h1>
-							</div>
+							<a class="nav-link" href="/events/{{categorie.id}}">
+								<img src="{{asset('images/07-categories/08-categorie-background.png')}}" alt="Bannière">
+								<div class="category-content   ">
+									<h1>{{categorie.categoryName}}</h1>
+								</div>
+							</a>
 						</div>
 					</div>
 				{% endfor %}
