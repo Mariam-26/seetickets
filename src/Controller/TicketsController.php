@@ -12,16 +12,20 @@ use Symfony\Component\Routing\Attribute\Route;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class TicketsController extends AbstractController
 {
     #[Route('/tickets', name: 'app_tickets')]
+    #[IsGranted("ROLE_USER")]
     public function index(TicketRepository $tickets): Response
-    {
-        $t=$tickets->findAll();
+    {   
+        $user=$this->getUser();
+        $user_id=$user->getId();
+        $myTickets=$tickets->findTicketsByUserId($user_id);
         return $this->render('tickets/index.html.twig', [
             'controller_name' => 'TicketsController',
-            'tickets'=>$t
+            'tickets'=>$myTickets
         ]);
     }
 
@@ -37,7 +41,8 @@ class TicketsController extends AbstractController
      }
  
     // Réservation d'une place 
-    #[Route('/tickets/create/{id}', name: 'app_tickets')]
+    #[Route('/tickets/create/{id}', name: 'app_tickets_create')]
+    #[IsGranted("ROLE_USER")]
     public function createTicket(ProgrammationRepository $prog, EntityManagerInterface $entityManager, Request $request, string $id): Response
     {
         // Récupèration des infos de la programmation lié a l'id reçu en get
