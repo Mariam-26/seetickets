@@ -9,6 +9,7 @@ use App\Entity\Event;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 class EventsController extends AbstractController
@@ -51,12 +52,51 @@ class EventsController extends AbstractController
     }
 
     #[Route('/fav', name: 'app_favorites')]
-    public function favorites(): Response
-    {
+    public function favorites(SessionInterface $session, EventRepository $events): Response
+    {   
+        $arrayOfFavEvents=[];
+        if($session->get('favoris')){
+            
+            $favoris=$session->get('favoris');
+
+            $counter=0;
+            foreach($favoris as $favori){
+            $arrayOfFavEvents[$counter]=$events->findOneBy(['id'=>$favori]);
+            $counter++;
+        }
+        }
+        
+
         return $this->render('events/favorites.html.twig', [
-            'controller_name' => 'EventsController',
+            'favoris'=>$arrayOfFavEvents
         ]);
     }
+
+    #[Route('/fav/add/{id}', name: 'app_add_favorite')]
+    public function addToFav(SessionInterface $session, string $id): Response
+    {   
+        $favoris=$session->get('favoris');
+        if(!$session->get('favoris')){
+            $favoris=[];
+            array_push($favoris, $id);
+            $session->set('favoris', $favoris);
+        }elseif($session->get('favoris') && in_array($id,$favoris)==false){
+            $favoris = $session->get('favoris');
+            array_push($favoris,$id);
+            $session->set('favoris',$favoris);
+        }
+
+        return $this->redirectToRoute('app_favorites');
+    }
+
+    #[Route('/fav/remove', name: 'app_remove_favorite')]
+    public function removeFav(SessionInterface $session): Response
+    {   
+        $session->remove('favoris');
+
+        return $this->redirectToRoute('app_favorites');
+    }
+
 
     // VOIR UN EVENEMENT EN DETAIL
     #[Route('/event_details/{id}', name: 'app_event_details', methods: ['GET'])]
