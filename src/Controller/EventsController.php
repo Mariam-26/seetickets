@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class EventsController extends AbstractController
 {
     #[Route('/events', name: 'app_events')]
-    public function index(EventRepository $events): Response
+    public function event(EventRepository $events): Response
     {
         $e = $events->findAll();
         return $this->render('events/index.html.twig', [
@@ -32,13 +32,11 @@ class EventsController extends AbstractController
         $query = $request->getContent();
         // Traitez la requête de recherche comme vous le souhaitez, par exemple, recherchez dans la base de données
         parse_str(urldecode($query),$decoded);
-        dump($query);
         $results = $events->findEventByName($query);
         dump($results);
 
 
         return $this->render('events/search.html.twig', [
-            'query' => $query,
             // Passez d'autres données de résultat de recherche à votre template si nécessaire
             'results' => $results,
 
