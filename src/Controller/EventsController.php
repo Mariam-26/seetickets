@@ -22,8 +22,22 @@ class EventsController extends AbstractController
             'events' => $e
 
         ]);
+    
     }
 
+
+    #[Route('/events/{category}', name: 'app_events')]
+    public function eventCategory(EventRepository $events, $category): Response
+    {
+        $e = $events->findEventByCategory(['category_id' => $category]);
+        return $this->render('events/event_category.html.twig', [
+            'controller_name' => 'EventsController',
+            'events' => $e
+
+        ]);
+
+    }
+    
     
     /**
      * route qui permet d'afficher le résultat d'une recherche
