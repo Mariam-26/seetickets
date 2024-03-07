@@ -27,6 +27,7 @@
                 </div>
             </div>
         </div>
+        {{dump(tickets)}}
 </div>
 
 
@@ -45,24 +46,7 @@
             <div class="container mt-5 mb-5">
 
                                     <div class="row ">
-                    {% for event in events %}
-
-
-
-                                    <div class="col-4 mb-2 h-50">
-                                      <div class="category ">
-                                        <img src="https://via.placeholder.com/800x400?text=Slide+4" alt="Bannière">
-                                        <div class="category-content   ">
-                                        <h1 >{{event.eventName}}</h1>
-                                        <button class="bg-blue-500 text-white px-4 py-2 rounded" >
-			                            <a href="{{path('app_event_details', {'id': event.id})}}">Plus détails</a>
-                                         
-                                        {# events/detail.html.twig #}
-		                                </button>
-                                        </div>
-                                     </div>
-                                     </div>
-                                {% endfor %}
+                    
 
                                      </div>
                                     

@@ -35,6 +35,20 @@ class TicketRepository extends ServiceEntityRepository
            ;
        }
 
+       /**
+        * @return Ticket[] Returns an array of Ticket objects
+        */
+        public function findTicketsByProgrammationId($programmation_id): array
+        {
+            return $this->createQueryBuilder('p')
+                ->andWhere('p.programmation = :val')
+                ->setParameter('val', $programmation_id)
+                ->orderBy('p.id', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
     //    /**
     //     * @return Ticket[] Returns an array of Ticket objects
     //     */

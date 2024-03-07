@@ -6,6 +6,7 @@ use App\Entity\Programmation;
 use App\Repository\EventRepository;
 use App\Repository\ProgrammationRepository;
 use App\Entity\Event;
+use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,16 @@ class EventsController extends AbstractController
         ]);
     }
 
-    
+    #[Route('/topevents', name: 'app_topevents')]
+    public function topevent(TicketRepository $tickets, $idprogramation): Response
+    {
+        
+        $t = $tickets->findTicketsByProgrammationId(1)([for 'programmation_id' => $idprogramation]);;
+        return $this->render('events/top20.html.twig', [
+            'controller_name' => 'EventsController',
+            'tickets' => $t
+        ]);
+    }
 
     #[Route('/search_Result', name: 'search_Result')]
     public function searchEvent(Request $request, EventRepository $events): Response
