@@ -4,9 +4,11 @@
 {% endblock %}
 
 {% block body %}
+{# DEBUT CONTAINER #}
 	<div class="container mt-5 card-group d-flex row d-flex m-auto">
 		<div class="col-lg-8 col-md-8 col-sm-12">
 			<h2>L'évenement en détail</h2>
+			{# TABLEAU D'ELEMENT #}
 			<table class="table">
 				<tbody>
 					<tr>
@@ -32,17 +34,24 @@
 					</tr>
 				</tbody>
 			</table>
+			{# TABLEAU D'ELEMENT #}
 		</div>
-
 		<div class="col-lg-4 col-md-4 col-sm-12">
 			<h2>Programmation</h2>
+			{# DEBUT DE MA BOUCLE FOR #}
 			{% for programmation in programmations %}
+			{# L'AFFICHAGE DES INFOS DES PROGRAMMATIONS #}
 				<p>Programmé pour le
-					{{ programmation.programmationDate  | date('d-m-Y à H:i') }}</p>
-				{# {{dump(programmation)}} #}
+					{{ programmation.programmationDate  | date('d-m-Y à H:i') }}
+					{# L'AFFICHAGE DES INFOS D'UNE' PROGRAMMATION #}
+					<a href="{{ path('app_tickets_create', { id: programmation.id}) }}" class="btn rounded-1 btn-primary ">Voir +</a>
+				</p>
 			{% endfor %}
+			{# FIN DE MA BOUCLE FOR #}
 		</div>
 	</div>
+	{# FIN CONTAINER #}
 
-
+	{# INCLUSION DU FOOTER #}
+	{% include "footer.html.twig" %}
 {% endblock %}

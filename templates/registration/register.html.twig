@@ -1,24 +1,29 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Inscription{% endblock %}
+{# MON TITLE #}
+{% block title %}Inscription
+{% endblock %}
 
 {% block body %}
-<div class="container mt-5 mb-5 inscription">
-    <h1>Page d'inscription</h1>
-
-    {{ form_errors(registrationForm) }}
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.user_firstname) }}
-        {{ form_row(registrationForm.user_lastname) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
+	{# DEBUT CONTAINER #}
+	<div class="container mt-5 mb-5 inscription">
+		<h1>Page d'inscription</h1>
+        {# L'AFFICHAGE DES ELEMENTS DE MON FORMULAIRE D'INSCRIPTION #}
+		{{ form_errors(registrationForm) }}
+		{{ form_start(registrationForm) }}
+		{{ form_row(registrationForm.user_firstname) }}
+		{{ form_row(registrationForm.user_lastname) }}
+		{{ form_row(registrationForm.email) }}
+		{{ form_row(registrationForm.plainPassword, {
             label: 'Mot de passe'
         }) }}
+        {# CONDITION D'ACCORD D'UTILISATION #}
+		{{ form_row(registrationForm.agreeTerms) }}
+        {# BOUTON D'INSCRIPTION #}
+		<button type="submit" class="btn btn btn-primary rounded mt-5">S'inscrire</button>
+		{{ form_end(registrationForm) }}
+	</div>
+    {# FIN CONTAINER #}
 
-
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn btn btn-primary rounded mt-5">S'inscrire</button>
-    {{ form_end(registrationForm) }}
-    </div>
+	{# INCLUSION DU FOOTER #}
+	{% include "footer.html.twig" %}
 {% endblock %}

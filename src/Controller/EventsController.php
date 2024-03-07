@@ -42,7 +42,6 @@ class EventsController extends AbstractController
         ]);
     }
 
-
     #[Route('/search', name: 'app_search')]
     public function search(): Response
     {
@@ -59,22 +58,20 @@ class EventsController extends AbstractController
         ]);
     }
 
-    // VOIRE UN EVENEMENT EN DETAIL
+    // VOIR UN EVENEMENT EN DETAIL
     #[Route('/event_details/{id}', name: 'app_event_details', methods: ['GET'])]
-    public function detail(ProgrammationRepository $programmationRepository, $id, EventRepository $eventRepository): Response
+    public function detail(ProgrammationRepository $programmationRepository, $id, EventRepository $eventRepository /* INJECTION DE DEPENDANCE DE MES REPOSITORY (PROGRAMME ET EVENT) */): Response
     {
+        // RECHERCHE D'UN EVENEMENT PAR SON ID
         $event = $eventRepository->findOneBy(['id' => $id]);
-        //dd($event);
+        // RECHERCHE DES PROGRAMMATIONS LIEES A UN EVENEMENT
         $programmations = $programmationRepository->findBy(['event' => $event]);
-        // dd($programmations);
-
-        // Si l'évènement existe j'envoie les données à la vue
+        // J'ENVOIE SES DONNEES A LA VUE
         return  $this->render('events/detail.html.twig', [
-            // 'form' => $form->createView(), 
+            // JE METS LES INFOS SUR L'EVENEMENT A LA VARIALE ($event) DANS TWIG
             'event' => $event,
+            // JE METS LES INFOS SUR LA PROGRAMMATION A LA VARIALE ($programmations) DANS TWIG
             'programmations' => $programmations,
         ]);
     }
-
-    
 }
