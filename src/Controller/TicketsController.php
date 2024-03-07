@@ -79,7 +79,7 @@ class TicketsController extends AbstractController
             $entityManager->persist($ticket);
             $entityManager->flush();
             // Redirection vers la page d'accueil
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_tickets');
         }
         
         return $this->render('tickets/createTicket.html.twig', [
