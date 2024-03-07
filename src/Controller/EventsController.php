@@ -6,6 +6,7 @@ use App\Entity\Programmation;
 use App\Repository\EventRepository;
 use App\Repository\ProgrammationRepository;
 use App\Entity\Event;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,10 +72,18 @@ class EventsController extends AbstractController
      * @return Response
      */
     #[Route('/search', name: 'app_search')]
-    public function search(): Response
+    public function search(EventRepository $events,CategoryRepository $categories): Response
     {
+        $e = $events->findAll();
+        $event = array_slice($e,10,6);
+
+        $c = $categories->findAll();
+        $category = array_slice($c,0,4);
+
         return $this->render('events/search.html.twig', [
             'controller_name' => 'EventsController',
+            "events" => $event,
+            "categories" => $category
         ]);
     }
 
