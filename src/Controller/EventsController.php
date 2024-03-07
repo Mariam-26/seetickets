@@ -26,19 +26,18 @@ class EventsController extends AbstractController
 
     
 
-    #[Route('/search_result', name: 'app_search_Result',methods:"POST")]
+    #[Route('/search_Result', name: 'search_Result')]
     public function searchEvent(Request $request, EventRepository $events): Response
     {
-        $query = $request->getContent();
+        $query = $request->query->get('query');
         // Traitez la requête de recherche comme vous le souhaitez, par exemple, recherchez dans la base de données
-        parse_str(urldecode($query),$decoded);
         $results = $events->findEventByName($query);
-        dump($results);
 
 
-        return $this->render('events/search.html.twig', [
+        return $this->render('events/search_result.html.twig', [
             // Passez d'autres données de résultat de recherche à votre template si nécessaire
-            'results' => $results,
+            'events' => $results,
+            'query' => $query
 
         ]);
     }
