@@ -12,7 +12,7 @@
 
         <h1 calss ="text-center"> Vous recherchez ? </h1>
 
-     <form class="mt-5" action="{{ path('app_search_Result') }}" method="post">
+     <form class="mt-5" action="{{ path('search_Result') }}" method="get">
         <input type="text" name="query" placeholder="Rechercher...">
         <button type="submit">Rechercher</button>
      </form>
