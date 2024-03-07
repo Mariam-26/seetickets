@@ -5,9 +5,11 @@ body {
 
 .banner{
 
-background-image: url('../images/01-header-mc-solaar.png');
+background-image: url('../images/05-posters/technologie.jpeg');
 height: 70vh;
 background-size: cover;
+color: white;
+
 
 
 }
@@ -39,6 +41,7 @@ background-size: cover;
     text-align: center;
     background-image: url('../images/07-categories/08-categorie-background.png'); ;
    
+    background-size: cover;
   }
   .category img {
     width: 100%;

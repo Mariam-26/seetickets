@@ -47,7 +47,7 @@ class EventRepository extends ServiceEntityRepository
                ->getQuery()
                ->getResult()
            ;
-       }
+       } 
 
        public function findCategory($value): array
        {

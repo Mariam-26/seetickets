@@ -22,6 +22,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'events'=> $topEvent,
+            'event'=> $event,
             "category"=>$Category,
             "couleur" => $couleurs
             
