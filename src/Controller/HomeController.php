@@ -18,7 +18,7 @@ class HomeController extends AbstractController
         $couleurs = ["#E5007D","info","danger","success","secondary","light","muted"];
         $event=$events->findAll();
         $Category=$category->findAll();
-        $topEvent = array_slice($event,0,3);
+        $topEvent = array_slice($event,1,3);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'events'=> $topEvent,
