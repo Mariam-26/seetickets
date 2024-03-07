@@ -94,30 +94,7 @@
 	{# INCLUSION DU FOOTER #}
 		{% include "footer.html.twig" %}
 
-<h2 class= " ms-2 mt-5"> Découvrir par categories: </h2>
 
-            <div class="container mt-5 mb-5">
-
-                                    <div class="row ">
-                    {% for categorie in category %}
-
-
-
-                                    <div class="col-4 mb-2 h-50">
-                                      <div class="category ">
-                                        <img src="{{asset('images/07-categories/08-categorie-background.png')}}" alt="Bannière">
-                                        <div class="category-content   ">
-                                        <h1 >{{categorie.categoryName}}</h1>
-                                        </div>
-                                     </div>
-                                     </div>
-                                {% endfor %}
-
-                                     </div>
-                                    
-            </div>
-
-            <h1 class= "ms-2"> La billetterie de vos évènements favoris </h1>
 
 
 </main>

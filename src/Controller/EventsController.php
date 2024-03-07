@@ -30,9 +30,11 @@ class EventsController extends AbstractController
     public function eventCategory(EventRepository $events, $category): Response
     {
         $e = $events->findEventByCategory(['category_id' => $category]);
+        $categoryName = $events->findCategory(['category_id' => $category]);
         return $this->render('events/event_category.html.twig', [
             'controller_name' => 'EventsController',
-            'events' => $e
+            'events' => $e,
+            "categoryName" => $categoryName
 
         ]);
 
