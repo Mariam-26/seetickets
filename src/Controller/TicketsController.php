@@ -37,7 +37,7 @@ class TicketsController extends AbstractController
      }
  
     // Réservation d'une place 
-    #[Route('/tickets/create/{id}', name: 'app_tickets')]
+    #[Route('/tickets/create/{id}', name: 'app_tickets_create')]
     public function createTicket(ProgrammationRepository $prog, EntityManagerInterface $entityManager, Request $request, string $id): Response
     {
         // Récupèration des infos de la programmation lié a l'id reçu en get

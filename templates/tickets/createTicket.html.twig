@@ -10,9 +10,9 @@
 
 <main>
 
+    <div class="container mt-5">
     <h1>Achat d'un billet</h1>
 
-    <div>
         <ul>
             <li>Nom de l'évènement : {{programmation.event.eventName}}</li>
             <li>Catégorie de l'évènement : {{programmation.event.category.categoryName}}</li>
@@ -21,7 +21,7 @@
             <li>Date de l'évènement : {{programmation.programmationDate | date('d-m-Y')}}</li>
             <li>Prix : {{programmation.event.eventPrice}}€</li>
         </ul>
-    </div>
+    
 
     {{ form_start(form) }}
 {#         {{ form_label(form.price) }}
@@ -49,7 +49,11 @@
         {# {{ form_rest(form) }} #}
         <button type="submit">Enregistrer</button>
     {{ form_end(form) }}
+    </div>
 
 </main>
+
+	{# INCLUSION DU FOOTER #}
+		{% include "footer.html.twig" %}
 
 {% endblock %}
