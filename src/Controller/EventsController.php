@@ -25,7 +25,13 @@ class EventsController extends AbstractController
     }
 
     
-
+    /**
+     * route qui permet d'afficher le résultat d'une recherche
+     *
+     * @param Request $request
+     * @param EventRepository $events
+     * @return Response
+     */
     #[Route('/search_Result', name: 'search_Result')]
     public function searchEvent(Request $request, EventRepository $events): Response
     {
@@ -43,6 +49,11 @@ class EventsController extends AbstractController
     }
 
 
+    /**
+     * route qui permet d'aller sur la barre de recherche
+     *
+     * @return Response
+     */
     #[Route('/search', name: 'app_search')]
     public function search(): Response
     {
@@ -59,7 +70,12 @@ class EventsController extends AbstractController
         ]);
     }
 
-    // VOIRE UN EVENEMENT EN DETAIL
+
+
+    /**
+     *     // Route qui permet de voir un evenement en détail.
+
+     */
     #[Route('/event_details/{id}', name: 'app_event_details', methods: ['GET'])]
     public function detail(ProgrammationRepository $programmationRepository, $id, EventRepository $eventRepository): Response
     {
