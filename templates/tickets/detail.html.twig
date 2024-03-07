@@ -1,38 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ticket{% endblock %}
+{% block title %}Ticket
+{% endblock %}
 
 {% block body %}
-    <h1>Voir le ticket en détail</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ ticket.id }}</td>
-            </tr>
-            <tr>
-                <th>Ticket_name</th>
-                <td>{{ ticket.ticketFirstname }}</td>
-            </tr>
-            <tr>
-                <th>Ticket_place</th>
-                <td>{{ ticket.ticketPlace }}</td>
-            </tr>
-            <tr>
-                <th>Organisation_name</th>
-                <td>{{ ticket.organisationName }}</td>
-            </tr>
-            <tr>
-                <th>Ticket_image</th>
-                <td>{{ ticket.ticketImage }}</td>
-            </tr>
-            <tr>
-                <th>Ticket_price</th>
-                <td>{{ ticket.ticketPrice }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-
+	<h1>Voir le ticket en détail</h1>
+{# TABLEAU D'ELEMENT #}
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ ticket.id }}</td>
+			</tr>
+			<tr>
+				<th>Ticket_name</th>
+				<td>{{ ticket.ticketFirstname }}</td>
+			</tr>
+			<tr>
+				<th>Ticket_place</th>
+				<td>{{ ticket.ticketPlace }}</td>
+			</tr>
+			<tr>
+				<th>Organisation_name</th>
+				<td>{{ ticket.organisationName }}</td>
+			</tr>
+			<tr>
+				<th>Ticket_image</th>
+				<td>{{ ticket.ticketImage }}</td>
+			</tr>
+			<tr>
+				<th>Ticket_price</th>
+				<td>{{ ticket.ticketPrice }}</td>
+			</tr>
+		</tbody>
+	</table>
 {% endblock %}
