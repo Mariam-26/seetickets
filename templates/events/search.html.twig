@@ -15,11 +15,51 @@
         
 
      <form class="mt-5" action="{{ path('search_Result') }}" method="get">
-        <input type="text" name="query" placeholder="Rechercher...">
+        <input type="text" name="query" placeholder="Rechercher les evenements...">
         <button type="submit">Rechercher</button>
      </form>
 
+
+
+ <div class="container text-center mt-5">
+            <div class="row ">
+                {% for categorie in categories %}
+                    <div class="col-6 mb-2 mt-5 ">
+               <a class="nav-link" href="/events/{{categorie.id}}">
+                        <div class="card mb-1 bg-danger text-white">
+                            <div class="card-body ">
+                            
+                                <h5 class="card-title">{{ categorie.categoryName }}</h5>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
        
+      <h2 class="text-center"> Les Evenement les plus recherchés :  </h2>
+
+       <div class="container text-center mt-5">
+            <div class="row ">
+                {% for event in events %}
+                <div class="col-4 mb-2 mt-5 h-50">
+                    <div class="card mb-1">
+                        <div class="card-body">
+                            <a href ="/event_details/{{event.id}}"> 
+                            
+                            <img class="imgTop20" src="{{asset('images/05-posters/' ~ event.eventImage)}}"/>
+
+                            </a>
+                        </div>
+                            <h5 class="card-title">{{ event.eventName }}</h5>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 
 
     </div>
