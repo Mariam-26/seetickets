@@ -22,10 +22,32 @@ class EventsController extends AbstractController
             'events' => $e
 
         ]);
+    
     }
 
-    
 
+    #[Route('/events/{category}', name: 'app_events')]
+    public function eventCategory(EventRepository $events, $category): Response
+    {
+        $e = $events->findEventByCategory(['category_id' => $category]);
+        $categoryName = $events->findCategory(['category_id' => $category]);
+        return $this->render('events/event_category.html.twig', [
+            'controller_name' => 'EventsController',
+            'events' => $e,
+            "categoryName" => $categoryName
+
+        ]);
+
+    }
+    
+    
+    /**
+     * route qui permet d'afficher le résultat d'une recherche
+     *
+     * @param Request $request
+     * @param EventRepository $events
+     * @return Response
+     */
     #[Route('/search_Result', name: 'search_Result')]
     public function searchEvent(Request $request, EventRepository $events): Response
     {
@@ -42,6 +64,12 @@ class EventsController extends AbstractController
         ]);
     }
 
+
+    /**
+     * route qui permet d'aller sur la barre de recherche
+     *
+     * @return Response
+     */
     #[Route('/search', name: 'app_search')]
     public function search(): Response
     {
@@ -58,7 +86,12 @@ class EventsController extends AbstractController
         ]);
     }
 
-    // VOIR UN EVENEMENT EN DETAIL
+
+
+    /**
+     *     // Route qui permet de voir un evenement en détail.
+
+     */
     #[Route('/event_details/{id}', name: 'app_event_details', methods: ['GET'])]
     public function detail(ProgrammationRepository $programmationRepository, $id, EventRepository $eventRepository /* Injection de dépendance de mes repository ( programmation et event) */): Response
     {

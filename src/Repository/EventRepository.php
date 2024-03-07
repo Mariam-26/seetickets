@@ -31,20 +31,39 @@ class EventRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    //    /**
-    //     * @return Event[] Returns an array of Event objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('e')
-    //            ->andWhere('e.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('e.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+       /**
+        * @return Event[] Returns an array of Event objects
+        */
+       public function findEventByCategory($value): array
+       {
+           return $this->createQueryBuilder('e')
+
+           ->select('e') // Sélectionne tous les champs de Entity1 et le champ spécifique de Entity2
+
+              
+
+               ->andWhere('e.category = :val')
+               ->setParameter('val', $value)
+               ->getQuery()
+               ->getResult()
+           ;
+       }
+
+       public function findCategory($value): array
+       {
+           return $this->createQueryBuilder('e')
+
+              ->select('c.category_name') // Sélectionne tous les champs de Entity1 et le champ spécifique de Entity2
+
+              
+               ->join('App\Entity\Category', 'c', 'WITH', 'e.category = c.id')
+
+               ->andWhere('e.category = :val')
+               ->setParameter('val', $value)
+               ->getQuery()
+               ->getResult()
+           ;
+       }
 
     //    public function findOneBySomeField($value): ?Event
     //    {
