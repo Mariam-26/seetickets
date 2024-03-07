@@ -53,7 +53,7 @@ class EventsController extends AbstractController
      * @param EventRepository $events
      * @return Response
      */
-    #[Route('/search_Result', name: 'search_Result')]
+    #[Route('/search_result', name: 'search_result')]
     public function searchEvent(Request $request, EventRepository $events): Response
     {
         $query = $request->query->get('query');
