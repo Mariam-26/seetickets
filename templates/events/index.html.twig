@@ -55,7 +55,7 @@
                                         <div class="category-content   ">
                                         <h1 >{{event.eventName}}</h1>
                                         <button class="bg-blue-500 text-white px-4 py-2 rounded" >
-			                            <a href="{{path('app_events')}}">Plus détails</a>
+			                            <a href="{{path('app_event_details', {'id': event.id})}}">Plus détails</a>
                                          
                                         {# events/detail.html.twig #}
 		                                </button>
