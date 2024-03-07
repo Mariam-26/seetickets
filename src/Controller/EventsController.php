@@ -60,17 +60,17 @@ class EventsController extends AbstractController
 
     // VOIR UN EVENEMENT EN DETAIL
     #[Route('/event_details/{id}', name: 'app_event_details', methods: ['GET'])]
-    public function detail(ProgrammationRepository $programmationRepository, $id, EventRepository $eventRepository /* INJECTION DE DEPENDANCE DE MES REPOSITORY (PROGRAMME ET EVENT) */): Response
+    public function detail(ProgrammationRepository $programmationRepository, $id, EventRepository $eventRepository /* Injection de dépendance de mes repository ( programmation et event) */): Response
     {
-        // RECHERCHE D'UN EVENEMENT PAR SON ID
+        // Recherche d'un évènement par son id
         $event = $eventRepository->findOneBy(['id' => $id]);
-        // RECHERCHE DES PROGRAMMATIONS LIEES A UN EVENEMENT
+        // Recherche des programmations liées à un évènement
         $programmations = $programmationRepository->findBy(['event' => $event]);
-        // J'ENVOIE SES DONNEES A LA VUE
+        // J'envoie des données à la vue
         return  $this->render('events/detail.html.twig', [
-            // JE METS LES INFOS SUR L'EVENEMENT A LA VARIALE ($event) DANS TWIG
+            // Je mets des infos à la variable ($event)
             'event' => $event,
-            // JE METS LES INFOS SUR LA PROGRAMMATION A LA VARIALE ($programmations) DANS TWIG
+            // Je mets des infos à la variable ($programmations)
             'programmations' => $programmations,
         ]);
     }
