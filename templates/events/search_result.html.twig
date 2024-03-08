@@ -17,7 +17,15 @@
         </form>
 
  
-        <h1 class="text-center mt-5">Résultats de la recherche pour "{{ query }}" :</h1>
+
+         {% if events == [] %}
+
+          <h1 class="text-center mt-5"> Aucun résultats. </br> Veuillez rechercher un autre événement </h1>
+
+         {% else %}
+
+         <h1 class="text-center mt-5">Résultats de la recherche pour "{{ query }}" :</h1>
+
 
         <div class="container text-center mt-5">
             <div class="row ">
@@ -38,7 +46,8 @@
             </div>
         </div>
        
- 
+         {% endif %}
+
 
     </div>
 
