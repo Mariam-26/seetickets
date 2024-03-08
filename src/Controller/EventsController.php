@@ -27,16 +27,43 @@ class EventsController extends AbstractController
     }
 
     #[Route('/topevents', name: 'app_topevents')]
-    public function topevent(TicketRepository $tickets, $idprogramation): Response
-    {
-        for ($i = 0; $i<$idprogramation; $i++){
-        $t = $tickets->findTicketsByProgrammationId($i);
+    public function topevent(TicketRepository $tickets, ProgrammationRepository $programmations): Response
+    {   
+        // integration select sql avec controller test Renata 
+        $em=$this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT event.id,COUNT(programmation_id) AS 'count' FROM event INNER JOIN programmation ON event.id= programmation.event_id INNER JOIN ticket ON programmation.id= ticket.programmation_id GROUP BY event.id ORDER BY count DESC LIMIT 20;
+            ');
+ 
+        $parc = $query->getResult();
+        // on récupère tout les tickets
+        $t=$tickets->findAll();
+        // on récupère toutes les programmations
+        $programmationsId=$programmations->findAll();
+        // initialisation d'un compteur
+        $counter=[];
+        // pour chaque programmation on va récupérer l'id et initialiser le compteur de cette programmation à 0
+        foreach($programmationsId as $key=>$programmationId){
+            $counter[$programmationId->getId()]=0;
+        }
+
+        // initialisation d'un tableau ticketsprogrammation qui va contenir les infos de la programmation concernant chaque ticket
+        $ticketsProgrammation=[];
+        foreach($t as $key=> $ticket){
+            $ticketsProgrammation[$key]=$ticket->getProgrammation();
+            // on récupère l'id de la programmation d'un ticket
+            $idProgrammation=$ticketsProgrammation[$key]->getId();
+            // on incrémente le compteur de la programmation concernée dans le tableau compteur
+            $counter[$idProgrammation]++;
+        }
+
         return $this->render('events/top20.html.twig', [
             'controller_name' => 'EventsController',
-            'tickets' => $t
-            $results = 
+            'tickets'=>$t,
+            'programmationTickets'=>$ticketsProgrammation,
+            'programmationsId'=>$programmationsId,
+            'counter'=>$counter
         ]);
-        }
     }
 
     #[Route('/search_Result', name: 'search_Result')]
