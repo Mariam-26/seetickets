@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class EventsController extends AbstractController
 {
-    #[Route('/events', name: 'app_events')]
+    #[Route('/events', name: 'events')]
     public function event(EventRepository $events): Response
     {
         $e = $events->findAll();
