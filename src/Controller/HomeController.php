@@ -8,14 +8,26 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
-    public function index(EventRepository $events, CategoryRepository $category): Response
+    public function index(SessionInterface $session,EventRepository $events, CategoryRepository $category): Response
     {
 
-        $couleurs = ["#E5007D","info","danger","success","secondary","light","muted"];
+        $arrayOfFavEvents=[];
+        if($session->get('favoris')){
+            
+            $favoris=$session->get('favoris');
+
+            $counter=0;
+            foreach($favoris as $favori){
+                $arrayOfFavEvents[$counter]=$events->findOneBy(['id'=>$favori]);
+                $counter++;
+            }
+        }
+
         $event=$events->findAll();
         $Category=$category->findAll();
         $topEvent = array_slice($event,0,3);
@@ -24,7 +36,8 @@ class HomeController extends AbstractController
             'events'=> $topEvent,
             'event'=> $event,
             "category"=>$Category,
-            "couleur" => $couleurs
+            'favoris'=>$arrayOfFavEvents
+
             
         ]);
     }

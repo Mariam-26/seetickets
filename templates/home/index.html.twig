@@ -86,9 +86,71 @@
 
 		</div>
 
-		<h1 class="ms-2">
-			La billetterie de vos évènements favoris
-		</h1>
+		<h2 class="ms-2">
+			La billetterie de vos évènements favoris :
+		</h2>
+
+			{% if favoris %}
+				<div class="container text-center">
+					<div class="row overflow-container">
+						{% for event in favoris %}
+							<div class="col-md-4">
+								<div class="card mb-1">
+									<div class="card-body">
+										<a href="/event_details/{{event.id}}">
+											<img class="imgTop20" src="{{asset('images/05-posters/' ~ event.eventImage)}}"/>
+										</a>
+									</div>
+								</div>
+								<h5 class="card-title">{{ event.eventName }}</h5>
+
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			{% else %}
+			<h3 class="ms-2">pas de favori enregistré</h3>
+			{% endif %}
+
+
+			<h2 class="ms-2 mt-5">
+			Les spectateurs témoignent:
+			</h2>
+
+			
+
+			{% set testimonials = [
+				{'name': 'Alice Johnson','rating': 4, 'role': 'Spécialiste du support client', 'message': "L'application SeeTickets a révolutionné notre façon de gérer les demandes de nos clients. Elle est simple à utiliser et dispose de toutes les fonctionnalités dont nous avons besoin."},
+				{'name': 'John Smith','rating': 5, 'role': 'Directeur informatique', 'message': 'Notre équipe utilise cette application de tickets depuis des mois maintenant et nous avons constaté une réduction significative du temps de réponse. Elle est intuitive et personnalisable.'},
+				{'name': 'Emily Brown', 'rating': 5, 'role': 'Administrateur système', 'message': 'Je recommande vivement ce logiciel de gestion des tickets. Il est robuste, fiable et dispose d\'excellentes fonctionnalités de reporting. Notre flux de travail n\'a jamais été aussi fluide.'}
+			] %}
+
+		<div class="container mt-3">
+			<div class="row">
+				{% for testimonial in testimonials %}
+				<div class="col-md-4 mb-4">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">{{ testimonial.name }}</h5>
+							<p class="card-text">
+								{% for i in 1..5 %}
+									{% if i <= testimonial.rating %}
+										<i class="bi bi-star-fill"></i>
+									{% else %}
+										<i class="bi bi-star"></i>
+									{% endif %}
+								{% endfor %}
+							</p>
+							<p class="card-text">{{ testimonial.message }}</p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+
+
+     </div>
 
 
 	</main>
