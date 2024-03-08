@@ -18,11 +18,20 @@
             <button type="submit">Rechercher</button>
         </form>
 
+        {% if message %}
+         Veuillez entrez des champs correctes
+
+        {% else %}
+
+         {% endif %}
+
+
+
  
 
          {% if events == [] %}
 
-          <h1 class="text-center mt-5"> Aucun résultats. </br> Veuillez rechercher un autre événement </h1>
+          <h1 class="text-center mt-5"> Aucun résultat. </br> Veuillez rechercher un autre événement </h1>
 
          {% else %}
 

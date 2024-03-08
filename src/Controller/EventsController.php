@@ -58,27 +58,57 @@ class EventsController extends AbstractController
     public function searchEvent(Request $request, EventRepository $events): Response
     {
         $query = $request->query->get('query');
+         
+
 
          if(empty($query)){
 
              return $this->render('events/search_result.html.twig', [
                 // Passez d'autres données de résultat de recherche à votre template si nécessaire
                 'events' => [],
-                'query' => $query
+                'query' => $query,
+                "message" => "",
+
     
             ]);
 
          }
-        // Traitez la requête de recherche comme vous le souhaitez, par exemple, recherchez dans la base de données
-        $results = $events->findEventByName($query);
 
 
-        return $this->render('events/search_result.html.twig', [
-            // Passez d'autres données de résultat de recherche à votre template si nécessaire
-            'events' => $results,
-            'query' => $query
+        else if (preg_match('/^[a-zA-Z]+$/', $query)){
 
-        ]);
+             // Traitez la requête de recherche comme vous le souhaitez, par exemple, recherchez dans la base de données
+             $results = $events->findEventByName($query);
+     
+     
+             return $this->render('events/search_result.html.twig', [
+                 // Passez d'autres données de résultat de recherche à votre template si nécessaire
+                 "message" => "",
+
+                 'events' => $results,
+                 'query' => $query
+     
+             ]);
+
+         }
+
+        else  {
+
+             
+     
+     
+             return $this->render('events/search_result.html.twig', [
+                 // Passez d'autres données de résultat de recherche à votre template si nécessaire
+                 "message" => "veuillez entrez des champs valides",
+                 'events' => [],
+                 'query' => $query
+    
+     
+             ]);
+
+         }
+
+
     }
  
 
