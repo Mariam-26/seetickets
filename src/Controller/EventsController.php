@@ -21,6 +21,7 @@ class EventsController extends AbstractController
         return $this->render('events/index.html.twig', [
             'controller_name' => 'EventsController',
             'events' => $e
+            
 
         ]);
     }
@@ -28,12 +29,14 @@ class EventsController extends AbstractController
     #[Route('/topevents', name: 'app_topevents')]
     public function topevent(TicketRepository $tickets, $idprogramation): Response
     {
-        
-        $t = $tickets->findTicketsByProgrammationId(1)([for 'programmation_id' => $idprogramation]);;
+        for ($i = 0; $i<$idprogramation; $i++){
+        $t = $tickets->findTicketsByProgrammationId($i);
         return $this->render('events/top20.html.twig', [
             'controller_name' => 'EventsController',
             'tickets' => $t
+            $results = 
         ]);
+        }
     }
 
     #[Route('/search_Result', name: 'search_Result')]
