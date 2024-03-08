@@ -9,12 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>{{app.user.userFirstname}} {{app.user.userLastname}} </h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/laragon/www/seetickets/src/Controller/UserController.php</code></li>
-        <li>Your template at <code>C:/laragon/www/seetickets/templates/user/index.html.twig</code></li>
-    </ul>
+    <h2><a href="{{ path('app_favorites') }}">Ma page favoris</a></h2>
+    <h2><a href="{{ path('app_tickets') }}">Mes tickets</a></h2>
+
+
 </div>
 {% endblock %}

@@ -21,7 +21,7 @@
 			{{ importmap('app') }}
 		{% endblock %}
 	{% endblock %}
-</html></head><body>
+</html></head><body class="d-flex flex-column" style="min-height:100vh;">
 
 
 <header>
@@ -54,15 +54,26 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/events/{{5}}">Sport</a>
 				</li>
+				
+				{% if not app.user %}
 				<li class="nav-item">
-					<a class="nav-link" href="/register">Crée un compte</a>
+					<a class="nav-link" href="/register">Créer un compte</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/login">Se connecter</a>
+				</li>
+				{% endif %}
 				<li class="nav-item">
 					<a class="nav-link" href="/search"><img src="{{asset('images/02-icons/01-icon-user.png')}}"/></a>
 				</li>
+				{% if app.user %}
 				<li class="nav-item">
 					<a class="nav-link" href="/user"><img src="{{asset('images/02-icons/02-icon-search.png')}}"/></a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/logout">Se déconnecter</a>
+				</li>
+				{% endif %}
 			</ul>
 		</div>
 	</nav>
