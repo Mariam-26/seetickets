@@ -61,9 +61,9 @@ class EventsController extends AbstractController
 
             $counter=0;
             foreach($favoris as $favori){
-            $arrayOfFavEvents[$counter]=$events->findOneBy(['id'=>$favori]);
-            $counter++;
-        }
+                $arrayOfFavEvents[$counter]=$events->findOneBy(['id'=>$favori]);
+                $counter++;
+            }
         }
         
 
@@ -89,10 +89,14 @@ class EventsController extends AbstractController
         return $this->redirectToRoute('app_favorites');
     }
 
-    #[Route('/fav/remove', name: 'app_remove_favorite')]
-    public function removeFav(SessionInterface $session): Response
+    #[Route('/fav/remove/{id}', name: 'app_remove_favorite')]
+    public function removeFav(SessionInterface $session, string $id): Response
     {   
-        $session->remove('favoris');
+        $favoris=$session->get('favoris');
+        foreach (array_keys($favoris, $id, true) as $key) {
+            unset($favoris[$key]);
+        }
+        $session->set('favoris',$favoris);
 
         return $this->redirectToRoute('app_favorites');
     }
