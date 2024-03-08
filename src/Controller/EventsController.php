@@ -29,13 +29,10 @@ class EventsController extends AbstractController
     #[Route('/topevents', name: 'app_topevents')]
     public function topevent(TicketRepository $tickets, ProgrammationRepository $programmations): Response
     {   
-        // integration select sql avec controller test Renata 
-        $em=$this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            'SELECT event.id,COUNT(programmation_id) AS 'count' FROM event INNER JOIN programmation ON event.id= programmation.event_id INNER JOIN ticket ON programmation.id= ticket.programmation_id GROUP BY event.id ORDER BY count DESC LIMIT 20;
-            ');
- 
-        $parc = $query->getResult();
+        $sql="SELECT event.id,COUNT(programmation_id) AS 'count' FROM event INNER JOIN programmation ON event.id= programmation.event_id INNER JOIN ticket ON programmation.id= ticket.programmation_id GROUP BY event.id ORDER BY count DESC LIMIT 20;";
+        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute([]);
+        $stmt->fetchAll();
         // on récupère tout les tickets
         $t=$tickets->findAll();
         // on récupère toutes les programmations
@@ -62,7 +59,8 @@ class EventsController extends AbstractController
             'tickets'=>$t,
             'programmationTickets'=>$ticketsProgrammation,
             'programmationsId'=>$programmationsId,
-            'counter'=>$counter
+            'counter'=>$counter,
+            'requete'=>$stmt
         ]);
     }
 
