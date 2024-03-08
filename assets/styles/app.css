@@ -26,6 +26,7 @@ color: white;
 
 
 
+
 .overflow-container {
   max-height: 70vh; /* Définissez la hauteur maximale souhaitée */
   overflow-y: auto; /* Ajoutez la barre de défilement verticale si nécessaire */

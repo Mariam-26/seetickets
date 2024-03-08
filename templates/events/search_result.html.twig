@@ -8,6 +8,8 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+	<main class="container mt-5">
+
     <div class="searchBar">
 
 
@@ -30,12 +32,12 @@
         <div class="container text-center mt-5">
             <div class="row ">
                 {% for event in events %}
-                <div class="col-4 mb-2 mt-5 h-50">
-                    <div class="card mb-1">
+                <div class="col-4  mb-2 mt-5 h-50">
+                    <div class="card"  mb-1>
                         <div class="card-body">
                             <a href ="/event_details/{{event.id}}"> 
                             
-                            <img class="imgTop20" src="{{asset('images/05-posters/' ~ event.eventImage)}}"/>
+                            <img style="width: 200px;" class="imgTop20" src="{{asset('images/05-posters/' ~ event.eventImage)}}"/>
 
                             </a>
                         </div>
@@ -50,6 +52,8 @@
 
 
     </div>
+
+    </main>
 
 {% endblock %} 
  
