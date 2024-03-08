@@ -13,21 +13,34 @@
     <div class="headerContent">
         <div class="headerTitle">
             <h1>eTicket</h1>
-            <h2>Mes Billets</h2>
         </div>
-    </div>
-    <div class="headerButtons">
-        <button>+ d'infos</button>
-        <button>+ address</button>
-        <button>+ ma liste</button>
     </div>
 </header>
 
 {# MAIN #}
 <main>
 
-    <h1>Mes Billets</h1>
-    {{dump(tickets)}}
+    <h1>Mes Tickets</h1>
+
+    <div class="d-flex">
+        {% for ticket in tickets %}
+        <div class="card m-4" style="width: 18rem;">
+            <img class="card-img-top" src="{{asset('images/05-posters/' ~ ticket.programmation.event.eventImage)}}"/>
+            <div class="card-body">
+                <h5 class="card-title">{{ticket.programmation.event.eventName}}</h5>
+                <p class="card-text">Organisateur : {{ticket.programmation.event.organisationName}} </p>
+                <p class="card-text">Lieu : {{ticket.programmation.event.eventPlace}}</p>
+                <p class="card-text">Date : {{ticket.ticketDate | date('d-m-Y à H:i')}}</p>
+                <p class="card-text">Nom :{{ticket.ticketLastname}}</p>
+                <p class="card-text">Prénom : {{ticket.ticketFirstname}}</p>
+                <p class="card-text">Prix : {{ticket.programmation.event.eventPrice}}€</p>
+
+                {# <a href="#" class="btn btn-primary">Go somewhere</a> #}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
 </main>
 
 
