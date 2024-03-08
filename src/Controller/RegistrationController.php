@@ -18,34 +18,57 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+         // Instaciation de l'entité User
+         $user = new User();
+        
+         // Injection de dépendance pour création le formulaire de registation
+         $form = $this->createForm(RegistrationFormType::class, $user);
+         
+         // Traitement de la soumission du formulaire
+         $form->handleRequest($request);
+ 
+         if ($form->isSubmitted() && $form->isValid()) {
+             // Récupération des mots de passe saisis dans le formulaire
+             $password1 = $form->get('plainPassword')->getData();
+             $password2 = $form->get('plainPassword_second')->getData();
+             
+             //Comparaison des deux mots de passe
+             if ($password1 === $password2) {
+                 // Hashage du mot de passe
+                 $user->setPassword(
+                     $userPasswordHasher->hashPassword(
+                         $user,
+                         $password1
+                     )
+                 );
+ 
+                 // Activation du compte utilisateur
+                 $user->setIsActived(true);
+ 
+                 // Persistance de l'utilisateur en base de données
+                 $entityManager->persist($user);
+                 $entityManager->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-
-            $user->setIsActived(true);
-
-            $entityManager->persist($user);
-            $entityManager->flush();
-            // do anything else you need here, like send an email
-
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+                 
+                 // Authentification de l'utilisateur après l'enregistrement
+                 return $userAuthenticator->authenticateUser(
+                     $user,
+                     $authenticator,
+                     $request
+                    );
+            } else {
+                $this->addFlash(
+                    'error',
+                    'Erreur de saisie'
+                ); /* affiche le message */
+            }
         }
-
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form,
-        ]);
-    }
+ 
+         // Rendu du template de formulaire d'inscription
+         return $this->render('registration/register.html.twig', [
+             'registrationForm' => $form->createView(),
+         ]);
+     }
 }
+
+

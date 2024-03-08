@@ -69,7 +69,6 @@ class EventsController extends AbstractController
         ]);
     }
  
-
     /**
      * route qui permet d'aller sur la barre de recherche
      *
@@ -98,8 +97,6 @@ class EventsController extends AbstractController
             'controller_name' => 'EventsController',
         ]);
     }
-
-
 
     /**
      *     // Route qui permet de voir un evenement en détail.
