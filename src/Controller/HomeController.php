@@ -29,7 +29,8 @@ class HomeController extends AbstractController
         }
 
         $event=$events->findAll();
-        $Category=$category->findAll();
+        $C=$category->findAll();
+        $Category=array_slice($C,1,9);
         $topEvent = array_slice($event,0,3);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
