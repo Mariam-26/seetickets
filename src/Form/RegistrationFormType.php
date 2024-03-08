@@ -59,9 +59,27 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 12,
                         'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
                         // longueur maximale autorisée par Symfony pour des raisons de sécurité
+                        'max' => 4096,
+                    ]),
+                ],
+            ])
+            ->add('plainPassword_second', PasswordType::class, [
+                // au lieu d'être placé directement sur l'objet,
+                // ceci est lu et encodé dans le contrôleur
+                'mapped' => false,
+                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez confirmer votre mot de passe',
+                    ]),
+                    new Length([
+                        'min' => 12, 
                         'max' => 4096,
                     ]),
                 ],

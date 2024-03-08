@@ -111,7 +111,6 @@ class EventsController extends AbstractController
 
     }
  
-
     /**
      * route qui permet d'aller sur la barre de recherche
      *
