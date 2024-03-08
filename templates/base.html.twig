@@ -26,16 +26,69 @@
 
 <header>
 
+<nav class="navbar navbar-dark bg-dark justify-content-between">
+	<a class="navbar-brand ms-5" href="/home"><img src="{{asset('images/logo/00-logo-white.png')}}"/></a>  	  
+			
+			<ul class=" ms-5 text-white list-unstyled d-flex justify-content-evenly">
+				<li class="nav-item active">
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand ms-5" href="/home"><img src="{{asset('images/logo/00-logo-white.png')}}"/></a>
-		</a>
+					<a class="nav-link" href="/home"><img src="{{asset('images/02-icons/00-icon-home.png')}}">
+					</a>
+				</li>
+				<li class="nav-item ms-5">
+					<a class="nav-link" href="/events/{{1}}">Concert</a>
+				</li>
+				<li class="nav-item ms-5">
+					<a class="nav-link" href="/events/{{4}}">Expositions</a>
+				</li>
+				<li class="nav-item ms-5">
+					<a class="nav-link" href="/events/{{9}}">Danse</a>
+				</li>
+				<li class="nav-item ms-5">
+					<a class="nav-link" href="/events/{{10}}">Humour</a>
+				</li>
+				<li class="nav-item ms-5">
+					<a class="nav-link" href="/events/{{5}}">Sport</a>
+				</li>
+				
+				</ul>
+
+				<ul class="text-white list-unstyled d-flex justify-content-evenlyn">
+					<li class="nav-item ms-2">
+						<a class="nav-link" href="/search"><img src="{{asset('images/02-icons/01-icon-user.png')}}"/></a>
+					</li>
+					{% if not app.user %}
+					<li class="nav-item ms-5 ">
+						<a class="nav-link" href="/register">Créer un compte</a>
+					</li>
+					<li class="nav-item ms-5 me-5">
+						<a class="nav-link" href="/login">Se connecter</a>
+					</li>
+					{% endif %}
+					
+					{% if app.user %}
+					<li class="nav-item ms-5">
+						<a class="nav-link" href="/user"><img src="{{asset('images/02-icons/02-icon-search.png')}}"/></a>
+					</li>
+					<li class="nav-item ms-5 me-5">
+						<a class="nav-link" href="/logout">Se déconnecter</a>
+					</li>
+					{% endif %}
+			</ul>
+	
+ 
+</nav>
+
+
+
+		{# <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+		
+		
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<div >
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
 					<a class="nav-link" href="/home"><img src="{{asset('images/02-icons/00-icon-home.png')}}"/>
@@ -78,7 +131,7 @@
 				{% endif %}
 			</ul>
 		</div>
-	</nav>
+	</nav> #}
 
 </header>
 
