@@ -59,4 +59,10 @@ color: white;
 
   }
 
+  /* EVENT DETAIL IMAGE */
+  .eventDetailImage {
+    height: 50vh !important;
+    object-fit: cover;
+  }
+
 

@@ -79,7 +79,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez confirmer votre mot de passe',
                     ]),
                     new Length([
-                        'min' => 12, 
+                        'min' => 12,
                         'max' => 4096,
                     ]),
                 ],

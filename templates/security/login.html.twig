@@ -5,11 +5,11 @@
 
 {% block body %}
 
-{# DEBUT CONTAINER #}
-	<div class="container mt-5 mb-5 login">
+	{# DEBUT CONTAINER #}
+	<div
+		class="container mt-5 mb-5 login">
 		{# FORMULAIRE DE CONNEXION #}
-		<form
-			action="{{ path('app_login') }}" method="post" name="login">
+		<form action="{{ path('app_login') }}" method="post" name="login">
 			{% if error %}
 				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 			{% endif %}
@@ -30,11 +30,22 @@
 			{# MOT DE PASS #}
 			<label for="inputPassword">Mot de passe</label>
 			<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<input
+			type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 			{# BOUTTON DE CONNEXION  #}
 			<button class="btn btn-lg btn-primary mt-5 rounded" type="submit">
 				Se connecter
 			</button>
+			<a href="{{ path('app_register') }}">
+				<button class="btn btn-lg btn-primary mt-5 rounded" type="submit">
+					Créer un compte
+				</button>
+			</a>
+			{# <a href="{{ path('') }}"> #}
+				<button class="btn btn-lg btn-primary mt-5 rounded" type="submit">
+					Mot de passe oublié
+				</button>
+			{# </a> #}
 		</form>
 		{# FIN FORMULAIRE DE CONNEXION #}
 	</div>

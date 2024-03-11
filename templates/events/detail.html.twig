@@ -4,54 +4,59 @@
 {% endblock %}
 
 {% block body %}
-{# DEBUT CONTAINER #}
-	<div class="container mt-5 card-group d-flex row d-flex m-auto">
-		<div class="col-lg-8 col-md-8 col-sm-12">
-			<h2>L'évenement en détail</h2>
-			{# TABLEAU D'ELEMENT #}
-			<table class="table">
-				<tbody>
-					<tr>
-						<th>Nom</th>
-						<td>{{ event.eventName }}</td>
-					</tr>
-					<tr>
-						<th>Place</th>
-						<td>{{ event.eventPlace }}</td>
-					</tr>
-					<tr>
-						<th>Organisateur</th>
-						<td>{{ event.organisationName }}</td>
-					</tr>
-					<tr>
-						<th>Image</th>
-						<td>{{ event.eventImage }}</td>
-					</tr>
-					<tr>
-						<th>Price</th>
-						<td>{{ event.eventPrice}}
-							€</td>
-					</tr>
-				</tbody>
-			</table>
-			<a href="{{ path('app_add_favorite', { id: event.id}) }}" class="btn rounded-1 btn-primary ">Ajouter à mes favoris</a>
+	{# DEBUT CONTAINER #}
 
-			{# TABLEAU D'ELEMENT #}
-		</div>
-		<div class="col-lg-4 col-md-4 col-sm-12">
-			<h2>Programmation</h2>
-			{# DEBUT DE MA BOUCLE FOR #}
-			{% for programmation in programmations %}
-			{# L'AFFICHAGE DES INFOS DES PROGRAMMATIONS #}
-				<p>Programmé pour le
-					{{ programmation.programmationDate  | date('d-m-Y à H:i') }}
-					{# L'AFFICHAGE DES INFOS D'UNE' PROGRAMMATION #}
-					<a href="{{ path('app_tickets_create', { id: programmation.id}) }}" class="btn rounded-1 btn-primary ">Voir +</a>
-				</p>
-			{% endfor %}
-			{# FIN DE MA BOUCLE FOR #}
+	<div class="container">
+		<div class="my-5">
+			<div class="card-group container d-flex">
+				<div class="row d-flex">
+					{% for message in app.flashes('message') %}
+						<div class="col-6">
+							<div class="mb-5 rounded btn btn-success">{{message}}</div>
+						</div>
+					{% endfor %}
+					<div class="col-lg-12 col-md-12 col-sm-12 mb-5 Shadow">
+						<div class="card-body my-5">
+							<div>
+								<img class="eventDetailImage" src="{{asset('images/05-posters/' ~ event.eventImage)}}" width="100%"/>
+							</div>
+							<h5 class="mt-3">Nom :
+								{{event.eventName}}
+							</h5>
+							<h5>Place :
+								{{event.eventPlace}}
+							</h5>
+							<h5>Organisateur :
+								{{event.organisationName}}
+							</h5>
+							<h5>Image :
+								{{event.eventImage}}
+							</h5>
+							<h5>Prix :
+								{{event.eventPrice}}
+							</h5>
+							<div class="my-1">
+								<a href="{{ path('app_add_favorite', { id: event.id}) }}" class="btn rounded-1 btn-primary ">Ajouter à mes favoris</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 mb-5">
+						<h2>Programmation</h2>
+						{# DEBUT DE MA BOUCLE FOR #}
+						{% for programmation in programmations %}
+							{# L'AFFICHAGE DES INFOS DES PROGRAMMATIONS #}
+							<p>Programmé pour le
+								{{ programmation.programmationDate  | date('d-m-Y à H:i')}}
+								{# L'AFFICHAGE DES INFOS D'UNE' PROGRAMMATION #}
+								<a href="{{ path('app_tickets_create', { id: programmation.id}) }}" class="btn rounded-1 btn-primary mt-3">Réserver</a>
+							</p>
+						{% endfor %}
+						{# FIN DE MA BOUCLE FOR #}
+					</div>
+					{# FIN CONTAINER #}
+				</div>
+			</div>
 		</div>
 	</div>
-	{# FIN CONTAINER #}
-
+	{# </div> #}
 {% endblock %}

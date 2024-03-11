@@ -24,29 +24,27 @@ class EventsController extends AbstractController
             'events' => $e
 
         ]);
-    
     }
- 
+
 
     #[Route('/events/{category}', name: 'app_events')]
     public function eventCategory(EventRepository $events, $category): Response
     {
-        $event=$events->findAll();
+        $event = $events->findAll();
 
         $e = $events->findEventByCategory(['category_id' => $category]);
         $categoryName = $events->findCategory(['category_id' => $category]);
         return $this->render('events/event_category.html.twig', [
             'controller_name' => 'EventsController',
             'events' => $e,
-            'event'=> $event,
+            'event' => $event,
 
             "categoryName" => $categoryName
 
         ]);
-
     }
-    
-    
+
+
     /**
      * route qui permet d'afficher le résultat d'une recherche
      *
@@ -58,72 +56,62 @@ class EventsController extends AbstractController
     public function searchEvent(Request $request, EventRepository $events): Response
     {
         $query = $request->query->get('query');
-         
 
 
-         if(empty($query)){
 
-             return $this->render('events/search_result.html.twig', [
+        if (empty($query)) {
+
+            return $this->render('events/search_result.html.twig', [
                 // Passez d'autres données de résultat de recherche à votre template si nécessaire
                 'events' => [],
                 'query' => $query,
                 "message" => "",
 
-    
+
             ]);
+        } else if (preg_match('/^[a-zA-Z]+$/', $query)) {
 
-         }
-
-
-        else if (preg_match('/^[a-zA-Z]+$/', $query)){
-
-             // Traitez la requête de recherche comme vous le souhaitez, par exemple, recherchez dans la base de données
-             $results = $events->findEventByName($query);
-     
-     
-             return $this->render('events/search_result.html.twig', [
-                 // Passez d'autres données de résultat de recherche à votre template si nécessaire
-                 "message" => "",
-
-                 'events' => $results,
-                 'query' => $query
-     
-             ]);
-
-         }
-
-        else  {
-
-             
-     
-     
-             return $this->render('events/search_result.html.twig', [
-                 // Passez d'autres données de résultat de recherche à votre template si nécessaire
-                 "message" => "veuillez entrez des champs valides",
-                 'events' => [],
-                 'query' => $query
-    
-     
-             ]);
-
-         }
+            // Traitez la requête de recherche comme vous le souhaitez, par exemple, recherchez dans la base de données
+            $results = $events->findEventByName($query);
 
 
+            return $this->render('events/search_result.html.twig', [
+                // Passez d'autres données de résultat de recherche à votre template si nécessaire
+                "message" => "",
+
+                'events' => $results,
+                'query' => $query
+
+            ]);
+        } else {
+
+
+
+
+            return $this->render('events/search_result.html.twig', [
+                // Passez d'autres données de résultat de recherche à votre template si nécessaire
+                "message" => "veuillez entrez des champs valides",
+                'events' => [],
+                'query' => $query
+
+
+            ]);
+        }
     }
- 
+
     /**
      * route qui permet d'aller sur la barre de recherche
      *
      * @return Response
      */
     #[Route('/search', name: 'app_search')]
-    public function search(EventRepository $events,CategoryRepository $categories): Response
+    public function search(EventRepository $events, CategoryRepository $categories): Response
     {
         $e = $events->findAll();
-        $event = array_slice($e,10,6);
+        $event = array_slice($e, 10, 6);
 
         $c = $categories->findAll();
-        $category = array_slice($c,0,4);
+        $category = array_slice($c, 0, 4);
 
         return $this->render('events/search.html.twig', [
             'controller_name' => 'EventsController',
@@ -134,37 +122,37 @@ class EventsController extends AbstractController
 
     #[Route('/fav', name: 'app_favorites')]
     public function favorites(SessionInterface $session, EventRepository $events): Response
-    {   
-        $arrayOfFavEvents=[];
-        if($session->get('favoris')){
-            
-            $favoris=$session->get('favoris');
+    {
+        $arrayOfFavEvents = [];
+        if ($session->get('favoris')) {
 
-            $counter=0;
-            foreach($favoris as $favori){
-                $arrayOfFavEvents[$counter]=$events->findOneBy(['id'=>$favori]);
+            $favoris = $session->get('favoris');
+
+            $counter = 0;
+            foreach ($favoris as $favori) {
+                $arrayOfFavEvents[$counter] = $events->findOneBy(['id' => $favori]);
                 $counter++;
             }
         }
-        
+
 
         return $this->render('events/favorites.html.twig', [
-            'favoris'=>$arrayOfFavEvents
+            'favoris' => $arrayOfFavEvents
         ]);
     }
 
     #[Route('/fav/add/{id}', name: 'app_add_favorite')]
     public function addToFav(SessionInterface $session, string $id): Response
-    {   
-        $favoris=$session->get('favoris');
-        if(!$session->get('favoris')){
-            $favoris=[];
+    {
+        $favoris = $session->get('favoris');
+        if (!$session->get('favoris')) {
+            $favoris = [];
             array_push($favoris, $id);
             $session->set('favoris', $favoris);
-        }elseif($session->get('favoris') && in_array($id,$favoris)==false){
+        } elseif ($session->get('favoris') && in_array($id, $favoris) == false) {
             $favoris = $session->get('favoris');
-            array_push($favoris,$id);
-            $session->set('favoris',$favoris);
+            array_push($favoris, $id);
+            $session->set('favoris', $favoris);
         }
 
         return $this->redirectToRoute('app_favorites');
@@ -172,12 +160,12 @@ class EventsController extends AbstractController
 
     #[Route('/fav/remove/{id}', name: 'app_remove_favorite')]
     public function removeFav(SessionInterface $session, string $id): Response
-    {   
-        $favoris=$session->get('favoris');
+    {
+        $favoris = $session->get('favoris');
         foreach (array_keys($favoris, $id, true) as $key) {
             unset($favoris[$key]);
         }
-        $session->set('favoris',$favoris);
+        $session->set('favoris', $favoris);
 
         return $this->redirectToRoute('app_favorites');
     }
