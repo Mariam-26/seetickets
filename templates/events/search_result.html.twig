@@ -19,7 +19,7 @@
         </form>
 
         {% if message %}
-        <h1 class="text-center mt-5"> Veuillez entrez des caratères valides </h1>
+        <h1 class="text-center mt-5"> Veuillez entrez des caratères de l'aplhabet francais (entre a et z) </h1>
 
         {% else %}
 
@@ -33,6 +33,17 @@
          {% else %}
 
          <h1 class="text-center mt-5">Résultats de la recherche pour "{{ query }}" :</h1>
+        
+         {% if query|length <= 3 %}
+
+         <p class="text-center> Si vous voulez avoir des résultats, veuillez affiner votre recherche </p> 
+        
+         {% else %}
+
+         <p> ok </p>
+
+         
+         {% endif %}
 
 
         <div class="container text-center mt-5">
