@@ -34,7 +34,10 @@
 					</tr>
 				</tbody>
 			</table>
-			<a href="{{ path('app_add_favorite', { id: event.id}) }}" class="btn rounded-1 btn-primary ">Ajouter à mes favoris</a>
+
+			{% if app.user %}
+				<a href="{{ path('app_add_favorite', { id: event.id}) }}" class="btn rounded-1 btn-primary ">Ajouter à mes favoris</a>
+			{% endif %}
 
 			{# TABLEAU D'ELEMENT #}
 		</div>
@@ -46,7 +49,7 @@
 				<p>Programmé pour le
 					{{ programmation.programmationDate  | date('d-m-Y à H:i') }}
 					{# L'AFFICHAGE DES INFOS D'UNE' PROGRAMMATION #}
-					<a href="{{ path('app_tickets_create', { id: programmation.id}) }}" class="btn rounded-1 btn-primary ">Voir +</a>
+					<a href="{{ path('app_tickets_create', { id: programmation.id}) }}" class="btn rounded-1 btn-primary ">Réserver</a>
 				</p>
 			{% endfor %}
 			{# FIN DE MA BOUCLE FOR #}
