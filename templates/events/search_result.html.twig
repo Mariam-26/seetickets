@@ -34,7 +34,7 @@
 
          <h1 class="text-center mt-5">Résultats de la recherche pour "{{ query }}" :</h1>
         
-         {% if query|length < 3 %}
+         {% if query|length <= 3 %}
 
          <p class="text-center> Si vous voulez avoir des résultats, veuillez affiner votre recherche </p> 
         
