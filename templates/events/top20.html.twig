@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des évenements {% endblock %}
+{% block title %}Le top 20 des évènements{% endblock %}
 
 {% block body %}
 <style>
@@ -27,46 +27,38 @@
                 </div>
             </div>
         </div>
-</div>
 
+</div>
 
 {# MAIN #}
 
 <main class="container mt-5">
 
-
- 
-
-
-    
-    {#  test #}    
-   
-
-            <div class="container mt-5 mb-5">
-
-                                    <div class="row ">
-                    {% for event in events %}
+ <h1 class="mt-5 text-center"> Le top 20 des événements : </h1>
 
 
+<div class="container text-center mt-5">
+    <div class="row ">
+        {% for event in top20 %}
+        <div class="col-md-4">
+            <div class="card mb-1">
+                <div class="card-body">
+                    <a href ="/event_details/{{event.id}}"> 
+                     
+                     <img class="imgTop20" src="{{asset('images/05-posters/' ~ event.event_image)}}"/>
 
-                                    <div class="col-4 mb-2 h-50">
-                                      <div class="category ">
-                                        <img src="https://via.placeholder.com/800x400?text=Slide+4" alt="Bannière">
-                                        <div class="category-content   ">
-                                        <h1 >{{event.eventName}}</h1>
-                                        <button class="bg-blue-500 text-white px-4 py-2 rounded" >
-			                            <a href="{{path('app_event_details', {'id': event.id})}}">Plus détails</a>
-                                         
-                                        {# events/detail.html.twig #}
-		                                </button>
-                                        </div>
-                                     </div>
-                                     </div>
-                                {% endfor %}
-
-                                     </div>
-                                    
+                    </a>
+                </div>
+                    <h5 class="card-title">{{ event.event_name }}</h5>
             </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+</main>
 
 
 </main>

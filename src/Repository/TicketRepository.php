@@ -35,6 +35,32 @@ class TicketRepository extends ServiceEntityRepository
            ;
        }
 
+       /**
+        * @return Ticket[] Returns an array of Ticket objects
+        */
+        public function findTicketsByProgrammationId($programmation_id): array
+        {
+            return $this->createQueryBuilder('p')
+                ->andWhere('p.programmation = :val')
+                ->setParameter('val', $programmation_id)
+                ->orderBy('p.id', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
+        public function getTop20Events() : array
+        {
+            // SELECT event.id,COUNT(programmation_id) AS 'countTickets' FROM ticket INNER JOIN programmation ON ticket.programmation_id=programmation.id INNER JOIN event ON programmation.event_id= event.id GROUP BY event.id ORDER BY countTickets DESC LIMIT 20;
+            return $this->createQueryBuilder('t')
+                ->innerJoin('t.programmation', 'p')
+                ->innerJoin('p.event', 'e')
+                ->select('e.id','e.event_image','e.event_name','count(p.event) AS nbTickets')
+                ->groupBy('e.id')
+                ->orderBy('nbTickets', 'DESC')
+                ->getQuery()
+                ->getResult();
+        }
     //    /**
     //     * @return Ticket[] Returns an array of Ticket objects
     //     */
