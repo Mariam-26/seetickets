@@ -27,35 +27,12 @@ class EventsController extends AbstractController
     }
 
     #[Route('/topevents', name: 'app_topevents')]
-    public function topevent(TicketRepository $tickets, ProgrammationRepository $programmations): Response
+    public function topevent(TicketRepository $tickets): Response
     {   
-        // on récupère tout les tickets
-        $t=$tickets->findAll();
-        // on récupère toutes les programmations
-        $programmationsId=$programmations->findAll();
-        // initialisation d'un compteur
-        $counter=[];
-        // pour chaque programmation on va récupérer l'id et initialiser le compteur de cette programmation à 0
-        foreach($programmationsId as $key=>$programmationId){
-            $counter[$programmationId->getId()]=0;
-        }
-
-        // initialisation d'un tableau ticketsprogrammation qui va contenir les infos de la programmation concernant chaque ticket
-        $ticketsProgrammation=[];
-        foreach($t as $key=> $ticket){
-            $ticketsProgrammation[$key]=$ticket->getProgrammation();
-            // on récupère l'id de la programmation d'un ticket
-            $idProgrammation=$ticketsProgrammation[$key]->getId();
-            // on incrémente le compteur de la programmation concernée dans le tableau compteur
-            $counter[$idProgrammation]++;
-        }
-
+        $events=$tickets->getTop20Events();
         return $this->render('events/top20.html.twig', [
             'controller_name' => 'EventsController',
-            'tickets'=>$t,
-            'programmationTickets'=>$ticketsProgrammation,
-            'programmationsId'=>$programmationsId,
-            'counter'=>$counter
+            'top20'=> $events
         ]);
     }
 
