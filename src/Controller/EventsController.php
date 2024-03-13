@@ -7,6 +7,7 @@ use App\Repository\EventRepository;
 use App\Repository\ProgrammationRepository;
 use App\Entity\Event;
 use App\Repository\CategoryRepository;
+use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,10 +23,20 @@ class EventsController extends AbstractController
         return $this->render('events/index.html.twig', [
             'controller_name' => 'EventsController',
             'events' => $e
+            
 
         ]);
     }
 
+    #[Route('/topevents', name: 'app_topevents')]
+    public function topevent(TicketRepository $tickets): Response
+    {   
+        $events=$tickets->getTop20Events();
+        return $this->render('events/top20.html.twig', [
+            'controller_name' => 'EventsController',
+            'top20'=> $events
+        ]);
+    }
 
     #[Route('/events/{category}', name: 'app_events')]
     public function eventCategory(EventRepository $events, $category): Response
