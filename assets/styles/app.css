@@ -1,14 +1,14 @@
 body {
-    background-color: white;
-    font-family: "Outfit Black";
+  background-color: white;
+  font-family: "Outfit Black";
 }
 
-.banner{
+.banner {
 
-background-image: url('../images/05-posters/technologieCover.jpeg');
-height: 70vh;
-background-size: cover;
-color: white;
+  background-image: url('../images/05-posters/technologieCover.jpeg');
+  height: 70vh;
+  background-size: cover;
+  color: white;
 
 
 
@@ -19,7 +19,7 @@ color: white;
   color: white;
 }
 
-.banner-content{
+.banner-content {
 
   margin-top: 25vh;
 }
@@ -28,40 +28,48 @@ color: white;
 
 
 .overflow-container {
-  max-height: 70vh; /* Définissez la hauteur maximale souhaitée */
+  max-height: 70vh;
+  /* Définissez la hauteur maximale souhaitée */
 }
 
-.imgTop20{
+.imgTop20 {
   display: block;
   margin: auto;
 }
 
 .category {
-    position: relative;
-    text-align: center;
-    background-image: url('../images/07-categories/08-categorie-background.png'); ;
-   
-    background-size: cover;
-  }
-  .category img {
-    width: 100%;
-    height: 20vh;
-  
-  }
-  .category .category-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    background-color: #E5007D;
+  position: relative;
+  text-align: center;
+  background-image: url('../images/07-categories/08-categorie-background.png');
+  ;
 
-  }
+  background-size: cover;
+}
 
-  /* EVENT DETAIL IMAGE */
-  .eventDetailImage {
-    height: 50vh !important;
-    object-fit: cover;
-  }
+.category img {
+  width: 100%;
+  height: 20vh;
 
+}
 
+.category .category-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background-color: #E5007D;
+
+}
+
+/* EVENT DETAIL IMAGE */
+.eventDetailImage {
+  height: 50vh !important;
+  object-fit: cover;
+}
+
+/* PAGE CONNEXION */
+.linkConnexion a {
+  text-decoration: none;
+  color: black;
+}

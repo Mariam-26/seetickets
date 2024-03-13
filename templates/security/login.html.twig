@@ -11,7 +11,8 @@
 		{# FORMULAIRE DE CONNEXION #}
 		<form action="{{ path('app_login') }}" method="post" name="login">
 			{% if error %}
-				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}
+				</div>
 			{% endif %}
 			{% if app.user %}
 				<div class="mb-3">
@@ -36,16 +37,16 @@
 			<button class="btn btn-lg btn-primary mt-5 rounded" type="submit">
 				Se connecter
 			</button>
-			<a href="{{ path('app_register') }}">
-				<button class="btn btn-lg btn-primary mt-5 rounded" type="submit">
-					Créer un compte
-				</button>
-			</a>
-			{# <a href="{{ path('') }}"> #}
-				<button class="btn btn-lg btn-primary mt-5 rounded" type="submit">
+			<div class="linkConnexion mt-4">
+				<a href="{{ path('app_register') }}">
+						Créer un compte
+				</a>
+			</div>
+			<div class="linkConnexion mt-4">
+				<a href="{{ path('app_forgot_password') }}">
 					Mot de passe oublié
-				</button>
-			{# </a> #}
+				</a>
+			</div>
 		</form>
 		{# FIN FORMULAIRE DE CONNEXION #}
 	</div>

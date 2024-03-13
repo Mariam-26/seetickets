@@ -48,6 +48,11 @@ class RegistrationController extends AbstractController
                 // Persistance de l'utilisateur en base de données
                 $entityManager->persist($user);
                 $entityManager->flush();
+                // Affichage d'un message de succès
+                $this->addFlash(
+                    'success',
+                    'Votre compte a été créé avec succès!'
+                );
 
                 // Authentification de l'utilisateur après l'enregistrement
                 return $userAuthenticator->authenticateUser(
@@ -56,10 +61,11 @@ class RegistrationController extends AbstractController
                     $request
                 );
             } else {
-                $this->addFlash( /* affiche le message */
+                // Affichage du message d'erreur
+                $this->addFlash(
                     'error',
                     'Erreur de saisie ❌'
-                ); 
+                );
             }
         }
 
